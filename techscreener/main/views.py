@@ -2,17 +2,35 @@ from django.shortcuts import render
 
 # Create your views here.
 
-def index(response):
-    return render(response, "main/index.html", {})
+def index(request):
+    return render(request, "main/index.html", {})
 
-def form(response):
-    return render(response, "main/form.html", {})
+def about(request):
+    return render(request, "main/about.html", {})
 
-def table(response):
-    return render(response, "main/table.html", {})
+def contact(request):
+    return render(request, "main/contact.html", {})
 
-def login(response):
-    return render(response, "main/login.html", {})
+def copyright(request):
+    return render(request, "main/copyright.html", {})
 
-def register(response):
-    return render(response, "main/register.html", {})
+def faq(request):
+    return render(request, "main/faq.html", {})
+
+def login(request):
+    return render(request, "main/login.html", {})
+
+def market(request):
+    return render(request, "main/market.html", {})
+
+def portfolio(request):
+    return render(request, "main/portfolio.html", {})
+
+def ranking(request):
+    return render(request, "main/ranking.html", {})
+
+def register(request):
+    return render(request, "main/register.html", {})
+
+def strategies(request):
+    return render(request, "main/strategies.html", {})

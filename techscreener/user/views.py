@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from rest_framework.response import Response
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.views import APIView
 from .serializers import UserSerializer
+from .models import User
 import jwt, datetime
 
 # Create your views here.
@@ -11,7 +12,8 @@ class RegisterView(APIView):
         serializer = UserSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
-        return Response(serializer.data)
+        response = redirect('/login?message=Registered')
+        return response
 
 class LoginView(APIView):
     def post(self, request):
@@ -28,19 +30,17 @@ class LoginView(APIView):
 
         payload = {
             'id': user.id,
+            'name': user.name,
             'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=600),
             'iat': datetime.datetime.utcnow()
          }
         
         token = jwt.encode(payload, 'secret', algorithm='HS256').decode('utf-8')
 
-        response = Response()
+        response = Response(template_name='index.html')
 
         response.set_cookie(key='auth_token', value=token, httponly=True)
 
-        response.data = {
-            'jwt_token': token
-        }
         return response
 
 class UserView(APIView):
@@ -61,10 +61,6 @@ class UserView(APIView):
 
 class LogoutView(APIView):
     def get(self, request):
-        response = Response()
+        response = Response(template_name='index.html')
         response.delete_cookie('auth_token')
-        response.data = {
-            'message': 'success'
-        }
-
         return response

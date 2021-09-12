@@ -40,12 +40,17 @@
                 <a class="navbar-brand brand-logo-mini" href="/"><img src="/static/images/logo-mini.png" alt="logo"/></a>
             </div>
             <ul class="navbar-nav navbar-nav-right">
-                <li class="nav-item dropdown d-lg-flex d-none">
-                  <button type="button" class="btn btn-inverse-primary btn-sm">Settings</button>
+              {% if not request.username %}
+                <li class="nav-item d-lg-flex d-none">
+                  <a href="/login" class="btn btn-inverse-primary btn-sm">Sign In</a>
                 </li>
+                <li class="nav-item d-lg-flex d-none">
+                  <a href="/register" class="btn btn-primary btn-sm">Sign Up</a>
+                </li>
+              {% else %}
                 <li class="nav-item nav-profile dropdown">
                   <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                    <span class="nav-profile-name">User Name</span>
+                    <span class="nav-profile-name">{{ request.username }}</span>
                     <span class="online-status"></span>
                     <img src="/static/images/avatar.png" alt="profile"/>
                   </a>
@@ -54,12 +59,14 @@
                         <i class="mdi mdi-settings text-primary"></i>
                         Settings
                       </a>
-                      <a class="dropdown-item">
+                      <a class="dropdown-item" href="/user/logout">
                         <i class="mdi mdi-logout text-primary"></i>
                         Logout
                       </a>
                   </div>
                 </li>
+              {% endif %}
+              </li>
             </ul>
             <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="horizontal-menu-toggle">
               <span class="mdi mdi-menu"></span>
@@ -77,43 +84,43 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/">
+                <a class="nav-link" href="/about">
                   <i class=" mdi mdi-information-outline menu-icon"></i>
                   <span class="menu-title">About</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/">
+                <a class="nav-link" href="/market">
                   <i class="mdi mdi-google-circles menu-icon"></i>
                   <span class="menu-title">Market</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/">
+                <a class="nav-link" href="/ranking">
                   <i class="mdi mdi-finance menu-icon"></i>
                   <span class="menu-title">Ranking</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/">
+                <a class="nav-link" href="/portfolio">
                   <i class="mdi mdi-view-dashboard menu-icon"></i>
                   <span class="menu-title">Portfolio</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/">
+                <a class="nav-link" href="/strategies">
                   <i class="mdi mdi-chart-areaspline menu-icon"></i>
                   <span class="menu-title">Strategies</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/">
+                <a class="nav-link" href="/faq">
                   <i class="mdi mdi-file-document-box-outline menu-icon"></i>
                   <span class="menu-title">FAQ</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/">
+                <a class="nav-link" href="/contact">
                   <i class=" mdi mdi-message-text-outline menu-icon"></i>
                   <span class="menu-title">Contact</span>
                 </a>
@@ -166,4 +173,4 @@
     <script src="/static/js/dashboard.js"></script>
     <!-- End custom js for this page-->
   </body>
-</html>
+</html> 
