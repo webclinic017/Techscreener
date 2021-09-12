@@ -77,49 +77,81 @@
       <nav class="bottom-navbar">
         <div class="container">
             <ul class="nav page-navigation">
+              {% if pageIndex == 0 %}
+              <li class="nav-item active">
+              {% else %}
               <li class="nav-item">
+              {% endif %}
                 <a class="nav-link" href="/">
                   <i class="mdi mdi-home menu-icon"></i>
                   <span class="menu-title">Home</span>
                 </a>
               </li>
+              {% if pageIndex == 1 %}
+              <li class="nav-item active">
+              {% else %}
               <li class="nav-item">
+              {% endif %}
                 <a class="nav-link" href="/about">
                   <i class=" mdi mdi-information-outline menu-icon"></i>
                   <span class="menu-title">About</span>
                 </a>
               </li>
+              {% if pageIndex == 2 %}
+              <li class="nav-item active">
+              {% else %}
               <li class="nav-item">
+              {% endif %}
                 <a class="nav-link" href="/market">
                   <i class="mdi mdi-google-circles menu-icon"></i>
                   <span class="menu-title">Market</span>
                 </a>
               </li>
+              {% if pageIndex == 3 %}
+              <li class="nav-item active">
+              {% else %}
               <li class="nav-item">
+              {% endif %}
                 <a class="nav-link" href="/ranking">
                   <i class="mdi mdi-finance menu-icon"></i>
                   <span class="menu-title">Ranking</span>
                 </a>
               </li>
+              {% if pageIndex == 4 %}
+              <li class="nav-item active">
+              {% else %}
               <li class="nav-item">
+              {% endif %}
                 <a class="nav-link" href="/portfolio">
                   <i class="mdi mdi-view-dashboard menu-icon"></i>
                   <span class="menu-title">Portfolio</span>
                 </a>
               </li>
+              {% if pageIndex == 5 %}
+              <li class="nav-item active">
+              {% else %}
               <li class="nav-item">
+              {% endif %}
                 <a class="nav-link" href="/strategies">
                   <i class="mdi mdi-chart-areaspline menu-icon"></i>
                   <span class="menu-title">Strategies</span>
                 </a>
               </li>
+              {% if pageIndex == 6 %}
+              <li class="nav-item active">
+              {% else %}
               <li class="nav-item">
+              {% endif %}
                 <a class="nav-link" href="/faq">
                   <i class="mdi mdi-file-document-box-outline menu-icon"></i>
                   <span class="menu-title">FAQ</span>
                 </a>
               </li>
+              {% if pageIndex == 7 %}
+              <li class="nav-item active">
+              {% else %}
               <li class="nav-item">
+              {% endif %}
                 <a class="nav-link" href="/contact">
                   <i class=" mdi mdi-message-text-outline menu-icon"></i>
                   <span class="menu-title">Contact</span>
@@ -139,11 +171,12 @@
 				</div>
 				<!-- content-wrapper ends -->
 				<!-- partial:partials/_footer.html -->
-				<footer class="footer">
+
+        <footer class="footer">
           <div class="footer-wrap">
             <div class="d-sm-flex justify-content-center justify-content-sm-between">
-              <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Averyx Group</span>
-              <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"><a href="/copyright" target="_blank">Copyright Notice</a></span>
+              <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © bootstrapdash.com 2020</span>
+              <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap dashboard templates</a> from Bootstrapdash.com</span>
             </div>
           </div>
         </footer>

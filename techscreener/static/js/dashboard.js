@@ -1051,7 +1051,7 @@
 		var supportTrackerData = {
 			labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", ],
 			datasets: [{
-				label: 'New Tickets',
+				label: 'Today',
 				data: [640, 750, 500, 400, 1200, 650, 550, 450, 400],
 				backgroundColor: [
 					'#464dee', '#464dee', '#464dee', '#464dee', '#464dee', '#464dee', '#464dee', '#464dee', '#464dee', 
@@ -1063,7 +1063,7 @@
 				fill: false
 			},
 			{
-					label: 'Open Tickets',
+					label: 'Yesterday',
 					data: [800, 550, 700, 600, 1100, 650, 550, 650, 850],					
 					backgroundColor: [
 						'#d8d8d8', '#d8d8d8', '#d8d8d8', '#d8d8d8', '#d8d8d8', '#d8d8d8', '#d8d8d8', '#d8d8d8', '#d8d8d8', 
@@ -1138,6 +1138,16 @@
 		};
 		if ($("#supportTracker").length) {
 			var barChartCanvas = $("#supportTracker").get(0).getContext("2d");
+			// This will get the first returned node in the jQuery collection.
+			var barChart = new Chart(barChartCanvas, {
+				type: 'bar',
+				data: supportTrackerData,
+				options: supportTrackerOptions
+			});
+			document.getElementById('support-tracker-legend').innerHTML = barChart.generateLegend();
+		}
+		if ($("#supportTracker2").length) {
+			var barChartCanvas = $("#supportTracker2").get(0).getContext("2d");
 			// This will get the first returned node in the jQuery collection.
 			var barChart = new Chart(barChartCanvas, {
 				type: 'bar',
