@@ -1,7 +1,9 @@
 from django.shortcuts import redirect, render
+from rest_framework.reverse import reverse
 from rest_framework.response import Response
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.views import APIView
+from rest_framework.renderers import TemplateHTMLRenderer
 from .serializers import UserSerializer
 from .models import User
 import jwt, datetime
@@ -16,6 +18,8 @@ class RegisterView(APIView):
         return response
 
 class LoginView(APIView):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'main/index.html'
     def post(self, request):
         email = request.data['email']
         password = request.data['password']
@@ -37,7 +41,7 @@ class LoginView(APIView):
         
         token = jwt.encode(payload, 'secret', algorithm='HS256').decode('utf-8')
 
-        response = Response(template_name='index.html')
+        response = Response({ 'message': 'Log in successful!' }, template_name='main/redirect.html')
 
         response.set_cookie(key='auth_token', value=token, httponly=True)
 
@@ -60,7 +64,9 @@ class UserView(APIView):
         return Response(serializer.data)
 
 class LogoutView(APIView):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'main/index.html'
     def get(self, request):
-        response = Response(template_name='index.html')
+        response = Response({ 'message': 'You are now logged out successfully' }, template_name='main/redirect.html')
         response.delete_cookie('auth_token')
         return response
