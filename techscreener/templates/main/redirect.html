@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row">
+	<div class="col-sm-12 grid-margin grid-margin-md-0 stretch-card">
+		<div class="card text-center">
+			<div class="card-body">
+                <h2>{{ message }}</h2>
+                <img src="/static/images/success.svg" alt="Successful" height="250px"><br/>
+                <a href="/" class="btn btn-primary btn-lg mt-5">Go Home</a>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
