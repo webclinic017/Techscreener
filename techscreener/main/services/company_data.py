@@ -77,6 +77,7 @@ Stocks = {
     },
 }
 
+# crud
 analysis_companies = {
     "AAPL": "Apple",
     "MSFT": "Microsoft",
@@ -151,6 +152,7 @@ analysis_companies = {
     "JNPR": "Juniper Networks",
 }
 
+# static
 strategies = {
     "SmaCross": SmaCross,
     "SmaxCrossSmay": SmaxCrossSmay,
@@ -162,6 +164,7 @@ strategies = {
     "EMASMA-dual": EMASMA_dual,
 }
 
+# static
 outcome_variables = [
     "Return [%]",
     "Buy and Hold Return [%]",
@@ -172,6 +175,7 @@ outcome_variables = [
     "Calmar Ratio",
 ]
 
+# semi static
 Strategy_description = {
     "EMASMARSI": {
         "buy condition": [

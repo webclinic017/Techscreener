@@ -1,4 +1,5 @@
 import jwt
+import base64
 # middleware.py
 
 class AuthenticationMiddleware(object):
@@ -7,7 +8,6 @@ class AuthenticationMiddleware(object):
 
     def __call__(self, request):
         token = request.COOKIES.get('auth_token')
-        print(token)
 
         if not token:
             response = self.get_response(request)
@@ -15,7 +15,7 @@ class AuthenticationMiddleware(object):
 
         try:
             payload = jwt.decode(token, 'secret', algorithms=['HS256'])
-        except jwt.ExpiredSignatureError:
+        except Exception:
             response = self.get_response(request)
             return response
 

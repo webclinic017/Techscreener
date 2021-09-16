@@ -4,51 +4,141 @@
 
 <div class="row">
 	<div class="col-sm-12 grid-margin stretch-card">
-		<div class="card text-center">
+		<div class="card text-center pb-5"
+			style="background-color: #f0f3f6; box-shadow: none; padding-top: 10vh; background-image: url(/static/images/bg-hero.png); background-position: top; background-size: 90%; background-repeat: no-repeat;">
 			<div class="card-body">
-				<h1>Content to be added</h1>
+				<h1 class="text-dark font-weight-bold display-2">
+					The easiest way to find stocks<br /> based on your requirements
+				</h1>
+				<p class="mt-4 mb-3" style="line-height: 1.5; max-width: 550px; margin: auto;">
+					Select the type of stocks you are interested in and we will give you the best recommendations,
+					optimized by Artificial Intelligence and Backtesting.
+				</p>
+				<form action="" class="form-basic mt-4" style="max-width: 500px; margin: auto;">
+					<div class="form-group">
+						<div class="input-group">
+							<select class="form-control form-control-lg" placeholder="Recipient's username"
+								aria-label="Recipient's username" style="padding: 0.875rem 1.375rem">
+								<option value="1">Company 1</option>
+								<option value="1">Company 2</option>
+							</select>
+							<div class="input-group-append">
+								<button class="btn btn-sm btn-primary" type="button">Search</button>
+							</div>
+						</div>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
 </div>
 
 <div class="row">
-	<div class="col-sm-6 grid-margin grid-margin-md-0 stretch-card">
+	<div class="col-sm-12 grid-margin stretch-card">
 		<div class="card">
 			<div class="card-body">
-				<div class="d-flex align-items-center justify-content-between">
-					<h4 class="card-title">Support Tracker</h4>
-					<h4 class="text-success font-weight-bold">Tickets<span class="text-dark ml-3">163</span></h4>
-				</div>
-				<div id="support-tracker-legend" class="support-tracker-legend"></div>
-				<canvas id="supportTracker"></canvas>
-			</div>
-		</div>
-	</div>
-	<div class="col-sm-6 grid-margin grid-margin-md-0 stretch-card">
-		<div class="card">
-			<div class="card-body">
-				<div class="d-lg-flex align-items-center justify-content-between mb-4">
-					<h4 class="card-title">Product Orders</h4>
-					<p class="text-dark">+5.2% vs last 7 days</p>
-				</div>
-				<div class="product-order-wrap padding-reduced">
-					<div id="productorder-gage" class="gauge productorder-gage"></div>
+				<div class="row justify-content-between">
+					<div class="col-md-6">
+						<h2 class="text-dark font-weight-bold display-3">
+							Wondering what these recommendations are based on?
+						</h2>
+					</div>
+					<div class="col-md-6 text-dark">
+						<p style="line-height: 1.5;">
+							In case you are wondering, what these recommendations are based on, we backtest <span
+								class="font-weight-bold">300+</span> company data with <span
+								class="font-weight-bold">10+</span> strategies and then sort them according to return
+							just for you. Also we use our Machine Learning Algorithms to optimise the variables in the
+							strategies, so you have very less things to worry about.
+						</p>
+					</div>
 				</div>
 			</div>
-		</div>
-	</div>
-	<div class="col-sm-6 grid-margin grid-margin-md-0 stretch-card">
-		<div class="card">
 			<div class="card-body">
-				
+				<div class="row justify-content-between">
+					<div class="col-md-3">
+						<i class="mdi mdi-radar icon-lg text-primary"></i>
+						<h3 class="text-dark font-weight-bold mt-2 mb-3">
+							How we create recommendations
+						</h3>
+						<p class="text-dark">
+							The recommendations are not from our side or from any other company. We use machine learning
+							algorithms and deep backtesting techniques on stocks data to create recommendations for our
+							customers.
+						</p>
+					</div>
+					<div class="col-md-3">
+						<i class="mdi mdi-poll icon-lg text-primary"></i>
+						<h3 class="text-dark font-weight-bold mt-2 mb-3">
+							Are these market predictions?
+						</h3>
+						<p class="text-dark">
+							We are not making any market predictions, we are applying backtesting techniques on the
+							<span class="text-danger">past few weeks' data</span> of the companies to come up with the
+							best suited investments.
+						</p>
+					</div>
+					<div class="col-md-3">
+						<i class="mdi mdi-truck icon-lg text-primary"></i>
+						<h3 class="text-dark font-weight-bold mt-2 mb-3">
+							How we deliver the best recommendations
+						</h3>
+						<p class="text-dark">
+							This application is thoroughly designed to compare 10+ available strategies to come up with
+							the best stocks based on your requirements.
+						</p>
+					</div>
+				</div>
 			</div>
-		</div>
-	</div>
-	<div class="col-sm-6 grid-margin grid-margin-md-0 stretch-card">
-		<div class="card">
 			<div class="card-body">
-				
+				<div class="row">
+					<div class="col-md-12 text-center mt-4 mb-2">
+						<h2 class="font-weight-bold display-3 text-dark">Backtesting and Analysis</h2>
+					</div>
+					<div class="col-md-6 text-center pt-5 pb-5 justify-content-between">
+						<h3 class="font-weight-bold text-dark">Quick Analysis</h3>
+						<p>
+							For quick analysis of the stocks of any company, just select the company name from the dropdown below and get a small analysis of it.
+						</p>
+						<form action="" class="form-basic mt-4" style="max-width: 500px; margin: auto; text-align: left;">
+							<div class="form-group">
+								<label for="company">Company</label>
+								<select class="form-control" placeholder="Recipient's username"
+									aria-label="Recipient's username">
+									<option value="Company 1">Company 1</option>
+									<option value="Company 1">Company 2</option>
+								</select>
+							</div>
+							<button type="submit" class="btn btn-primary mr-2 btn-block">Submit</button>
+						</form>
+					</div>
+					<div class="col-md-6 text-center pt-5 pb-5">
+						<h3 class="font-weight-bold text-dark">Custom Backtesting</h3>
+						<p>
+							In case you want to do some backtesting yourself you can select the company and the
+							strategy and rest we will handle.
+						</p>
+						<form action="" class="form-basic mt-4" style="max-width: 500px; margin: auto; text-align: left;">
+							<div class="form-group">
+								<label for="company">Company</label>
+								<select class="form-control" placeholder="Recipient's username"
+									aria-label="Recipient's username">
+									<option value="Company 1">Company 1</option>
+									<option value="Company 1">Company 2</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="company">Strategy</label>
+								<select class="form-control" placeholder="Recipient's username"
+									aria-label="Recipient's username">
+									<option value="Company 1">Strategy 1</option>
+									<option value="1">Strategy 2</option>
+								</select>
+							</div>
+							<button type="submit" class="btn btn-primary mr-2 btn-block">Submit</button>
+						</form>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
