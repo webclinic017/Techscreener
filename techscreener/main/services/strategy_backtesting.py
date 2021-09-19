@@ -1,8 +1,8 @@
 import io
 from backtesting import Backtest
 import backtesting as bt
-from company_data import strategies
-from data_pipeline import pipeline_intraday
+from .company_data import strategies
+from .data_pipeline import pipeline_intraday
 import matplotlib.pyplot as plt
 import matplotlib as mpl
 

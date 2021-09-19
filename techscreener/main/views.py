@@ -1,9 +1,10 @@
 from django.shortcuts import render
+from .services.company_data import analysis_companies, strategies, stocks
 
 # Create your views here.
 
 def index(request):
-    return render(request, "main/index.html", { 'pageIndex': 0 })
+    return render(request, "main/index.html", { 'pageIndex': 0, 'company': analysis_companies, 'indices': stocks, 'strategy': strategies })
 
 def about(request):
     return render(request, "main/about.html", { 'pageIndex': 1 })

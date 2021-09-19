@@ -1,6 +1,6 @@
-from strategy_storage import *
+from .strategy_storage import *
 
-Stocks = {
+stocks = {
     "Large-Cap Stocks": {
         "AAPL": "Apple",
         "MSFT": "Microsoft",
@@ -176,7 +176,7 @@ outcome_variables = [
 ]
 
 # semi static
-Strategy_description = {
+strategy_description = {
     "EMASMARSI": {
         "buy condition": [
             "weekly RSI(30) ≥ daily RSI(30) > 70",

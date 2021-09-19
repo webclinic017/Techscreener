@@ -18,9 +18,18 @@
 					<div class="form-group">
 						<div class="input-group">
 							<select class="form-control form-control-lg" placeholder="Recipient's username"
-								aria-label="Recipient's username" style="padding: 0.875rem 1.375rem">
-								<option value="1">Company 1</option>
-								<option value="1">Company 2</option>
+							aria-label="Recipient's username" style="padding: 0.875rem 1.375rem">
+								<option value="" disabled selected>
+									-- Select an index --
+								</option>
+								{% for index in indices %}
+								<option value="{{ index }}" 
+								{% if indices == index %}
+								selected="selected"
+								{% endif %}>
+									{{ index }}
+								</option>
+								{% endfor %}
 							</select>
 							<div class="input-group-append">
 								<button class="btn btn-sm btn-primary" type="button">Search</button>

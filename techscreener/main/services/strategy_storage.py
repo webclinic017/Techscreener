@@ -1,4 +1,4 @@
-from indicator_functions import SMA, EMA, RSI
+from .indicator_functions import SMA, EMA, RSI
 from backtesting import Strategy
 from backtesting.lib import crossover
 
