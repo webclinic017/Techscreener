@@ -153,15 +153,15 @@ analysis_companies = {
 }
 
 # static
-strategies = {
-    "SmaCross": SmaCross,
-    "SmaxCrossSmay": SmaxCrossSmay,
-    "SmaCrossthree": SmaCrossthree,
-    "EMASMASMA": EMASMASMA,
-    "EMAEMASMA": EMAEMASMA,
-    "EMAEMAEMA": EMAEMAEMA,
-    "EMASMARSI": EMASMARSI,
-    "EMASMA-dual": EMASMA_dual,
+Strategies = {
+    "SmaCross": "SmaCross",
+    "SmaxCrossSmay": "SmaxCrossSmay",
+    "SmaCrossthree": "SmaCrossthree",
+    "EMASMASMA": "EMASMASMA",
+    "EMAEMASMA": "EMAEMASMA",
+    "EMAEMAEMA": "EMAEMAEMA",
+    "EMASMARSI": "EMASMARSI",
+    "EMASMA-dual": "EMASMA_dual",
 }
 
 # static
