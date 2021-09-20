@@ -2,10 +2,10 @@
 	'use strict';
 	$(function() {
 		var salesDifferencedata = {
-			labels: ["50+", "35-50", "25-35", "18-25", "0-18"],
+			labels: ["APPL", "MSFT", "TSLA", "GOOG", "NFLX"],
 			datasets: [{
 				label: 'Best Sellers',
-				data: [22, 28, 18, 20, 12],
+				data: [36, 33, 27, 25, 19],
 				backgroundColor: [
 						'#8169f2',
 						'#6a4df5',
@@ -77,29 +77,26 @@
 		}
 		var bestSellersData = {
 			datasets: [{
-				data: [20, 15, 20, 35, 10],
+				data: [20, 15, 20, 35],
 				backgroundColor: [
 					'#ee5b5b',
 					'#fcd53b',
 					'#0bdbb8',
-					'#464dee',
-					'#0ad7f7'
+					'#464dee'
 				],
 				borderColor: [
 					'#ee5b5b',
 					'#fcd53b',
 					'#0bdbb8',
-					'#464dee',
-					'#0ad7f7'
+					'#464dee'
 				],
 			}],
 			// These labels appear in the legend and in the tooltips when hovering different arcs
 			labels: [
 				'Automotive',
-				'Books',
-				'Software',
-				'Toys',
-				'Video games'
+				'Technology',
+				'Financial',
+				'Real Estate'
 			]
 		};
 		var bestSellersOptions = {

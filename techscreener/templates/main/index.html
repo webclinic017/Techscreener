@@ -14,19 +14,16 @@
 					Select the type of stocks you are interested in and we will give you the best recommendations,
 					optimized by Artificial Intelligence and Backtesting.
 				</p>
-				<form action="" class="form-basic mt-4" style="max-width: 500px; margin: auto;">
+				<form action="/ranking" method="POST" class="form-basic mt-4" style="max-width: 500px; margin: auto;">
 					<div class="form-group">
 						<div class="input-group">
-							<select class="form-control form-control-lg" placeholder="Recipient's username"
-							aria-label="Recipient's username" style="padding: 0.875rem 1.375rem">
+							<select class="form-control form-control-lg" placeholder="Index"
+							aria-label="Index" style="padding: 0.875rem 1.375rem" name="index">
 								<option value="" disabled selected>
 									-- Select an index --
 								</option>
 								{% for index in indices %}
-								<option value="{{ index }}" 
-								{% if indices == index %}
-								selected="selected"
-								{% endif %}>
+								<option value="{{ index }}">
 									{{ index }}
 								</option>
 								{% endfor %}
@@ -109,13 +106,17 @@
 						<p>
 							For quick analysis of the stocks of any company, just select the company name from the dropdown below and get a small analysis of it.
 						</p>
-						<form action="" class="form-basic mt-4" style="max-width: 500px; margin: auto; text-align: left;">
+						<form action="/visualization" method="POST" class="form-basic mt-4" style="max-width: 500px; margin: auto; text-align: left;">
 							<div class="form-group">
 								<label for="company">Company</label>
-								<select class="form-control" placeholder="Recipient's username"
-									aria-label="Recipient's username">
-									<option value="Company 1">Company 1</option>
-									<option value="Company 1">Company 2</option>
+								<select class="form-control" placeholder="Company name"
+									aria-label="Company name" name="company">
+									<option value="" disabled selected>-- Select a company --</option>
+									{% for key, value in company.items %}
+										<option value="{{ key }}">
+											{{ value }}
+										</option>
+									{% endfor %}
 								</select>
 							</div>
 							<button type="submit" class="btn btn-primary mr-2 btn-block">Submit</button>
@@ -127,21 +128,27 @@
 							In case you want to do some backtesting yourself you can select the company and the
 							strategy and rest we will handle.
 						</p>
-						<form action="" class="form-basic mt-4" style="max-width: 500px; margin: auto; text-align: left;">
+						<form action="/strategy" method="POST" class="form-basic mt-4" style="max-width: 500px; margin: auto; text-align: left;">
 							<div class="form-group">
 								<label for="company">Company</label>
-								<select class="form-control" placeholder="Recipient's username"
-									aria-label="Recipient's username">
-									<option value="Company 1">Company 1</option>
-									<option value="Company 1">Company 2</option>
+								<select class="form-control" placeholder="Company name"
+									aria-label="Company name" name="company">
+									<option value="" disabled selected>-- Select a company --</option>
+									{% for key, value in company.items %}
+										<option value="{{ key }}">
+											{{ value }}
+										</option>
+									{% endfor %}
 								</select>
 							</div>
 							<div class="form-group">
 								<label for="company">Strategy</label>
-								<select class="form-control" placeholder="Recipient's username"
-									aria-label="Recipient's username">
-									<option value="Company 1">Strategy 1</option>
-									<option value="1">Strategy 2</option>
+								<select class="form-control" placeholder="Strategy name"
+									aria-label="Strategy name" name="strategy">
+									<option value="" disabled selected>-- Select a Strategy to Backtest --</option>
+									{% for key in strategy %}
+										<option value="{{ key }}">{{ key }}</option>
+									{% endfor %}
 								</select>
 							</div>
 							<button type="submit" class="btn btn-primary mr-2 btn-block">Submit</button>
