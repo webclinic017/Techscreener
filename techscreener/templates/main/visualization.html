@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row">
+	<div class="col-sm-12 grid-margin stretch-card">
+		<div class="card text-center pt-4 pb-4" style="background-color: #f0f3f6; box-shadow: none;">
+			<div class="card-body">
+				<h1 class="text-dark font-weight-bold display-2">Visualization</h1>
+                <h3 class="card-title">Company - {{ company }}</h3>
+				<p class="card-description mb-4">
+					Volume - {{ volume }}<br/>
+                    Current Price - {{ closing_price }}
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-6 grid-margin stretch-card">
+		<div class="card">
+			<div class="card-body">
+
+				<h3 class="card-title">Indicators in the last 10 minutes</h3>
+                {% for table in tables %}
+                    {{ table|safe }}
+                {% endfor %}
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6 grid-margin stretch-card">
+		<div class="card">
+			<div class="card-body">
+				<h3 class="card-title">Graph to go here</h3>
+                <div id="chart"></div>
+			</div>
+		</div>
+	</div>
+</div>  
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script type="text/javascript">
+    var graphs = {{ graphJSON | safe }};
+    Plotly.plot('chart', graphs,{});        
+</script>
+
+{% endblock %}

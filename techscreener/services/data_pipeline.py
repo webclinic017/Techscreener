@@ -1,12 +1,13 @@
 import requests 
-#from ta import add_all_ta_features
+# from ta import add_all_ta_features
 import pandas as pd
-#from ta.momentum import RSIIndicator
-#API_key = 'HSJLSMXPLUPA99I5'
-#ts  = TimeSeries(key=API_key,output_format = 'pandas')
+# from ta.momentum import RSIIndicator
+# API_key = 'HSJLSMXPLUPA99I5'
+# ts  = TimeSeries(key=API_key,output_format = 'pandas')
+
 def pipeline_intraday(ticker):
   params = {
-      'access_key' : '43893987de6db8c2ce031c6d3d9db375'
+      'access_key' : 'a2b5f680a25097eea88016bed0298957'
   }
   response = requests.get(f'http://api.marketstack.com/v1/tickers/{ticker}/eod',params)
   response = response.json()
@@ -22,4 +23,5 @@ def pipeline_intraday(ticker):
   df1.index = pd.to_datetime(df1.index)
   df1 = df1.sort_index(ascending=True)
   return df1
+
 # More functions for fetching daily data, monthly data and historical data to be updated soon. 

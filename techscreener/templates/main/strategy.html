@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row">
+	<div class="col-sm-12 grid-margin stretch-card">
+		<div class="card text-center pt-4 pb-4" style="background-color: #f0f3f6; box-shadow: none;">
+			<div class="card-body">
+				<h1 class="text-dark font-weight-bold display-2">Backtesting Result</h1>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-6 grid-margin stretch-card">
+		<div class="card">
+			<div class="card-body">
+				<h3 class="card-title">Company - {{ company }}</h3>
+				<p class="card-description mb-4">
+					Strategy - {{ strategy }}
+				</p>
+				<div class="template-demo">
+					<h1>Strategy Description</h1>
+				</div>
+				
+                <p>Buy a position when:</p>
+
+                {% for x in strategy_description[strategy]['buy condition'] %}
+                    <ul>                    
+                        <li>{{ x }}</li>
+                    </ul>
+                {% endfor %}            
+    
+                <p>Close the position when:</p>
+                
+                {% for x in strategy_description[strategy]['sell condition'] %}
+                    <ul>
+                        <li>{{ x }}</li>
+                    </ul>
+                {% endfor %}
+
+                </p>
+
+                <p>
+                    {% for i in range(6,13) %}
+                    {% set j = i - 6 %}
+                    <p>
+                        {{ outcome_variables[j] }} - {{ company_statistics[i] }}
+                    </p>
+                    {% endfor %}
+                </p>
+
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6 grid-margin stretch-card">
+		<div class="card">
+			<div class="card-body">
+				<h3 class="card-title">Graph to go here</h3>
+			</div>
+		</div>
+	</div>
+</div>  
+
+{% endblock %}

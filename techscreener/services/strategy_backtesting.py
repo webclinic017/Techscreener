@@ -1,7 +1,7 @@
 import io
 from backtesting import Backtest
 import backtesting as bt
-from .company_data import strategies
+from .company_data import Strategies
 from .data_pipeline import pipeline_intraday
 import matplotlib.pyplot as plt
 import matplotlib as mpl
@@ -29,8 +29,8 @@ def company_ranking(companies):
         company = x
         df = pipeline_intraday(x)
         save_image(df, company)
-        for keys in strategies:
-            bt = Backtest(df, strategies[keys], cash=100000, commission=0.002)
+        for keys in Strategies:
+            bt = Backtest(df, Strategies[keys], cash=100000, commission=0.002)
             company_strategy = bt.run()
             return_percentage[f"{company}_{keys}"] = company_strategy
     return_array = sorted(
@@ -41,6 +41,6 @@ def company_ranking(companies):
 
 def strategy_backtest(company, strategy):
     x = pipeline_intraday(company)
-    bt = Backtest(x, strategies[strategy], cash=100000, commission=0.002)
+    bt = Backtest(x, Strategies[strategy], cash=100000, commission=0.002)
     company_stats = bt.run()
     return company_stats
