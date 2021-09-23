@@ -1,6 +1,9 @@
 from django.shortcuts import redirect, render
+from django import template
+register=template.Library()
 from rest_framework.views import APIView
 import pandas as pd
+import json
 import plotly
 import plotly.express as px 
 from services.data_collection import largeCapReturns, mediumCapReturns
@@ -17,21 +20,25 @@ from services.strategy_backtesting import company_ranking, strategy_backtest
 class RankingView(APIView):
     def post(self, request):
         index = request.data['index']
-        stocks = Stocks[index]
         if index == 'Large-Cap Stocks':
             return_array = largeCapReturns
         else:
             return_array = mediumCapReturns
-
+        
         return render(request, "main/ranking.html", { 'return_array': return_array, 'outcome_variables': outcome_variables, 'strategy_description': strategy_description })
+    
+    @register.filter(name='split')
+    def split(value, key):
+        """
+            Returns the value turned into a list.
+        """
+        return value.split(key)
 
 class VisualizationView(APIView):
     def post(self, request):
         company = request.data['company']
         data = pipeline_intraday(company)
         data['SMA10'] = trend.sma_indicator(close = data['Close'], window = 10, fillna = False)
-
-        return render(request, "main/ranking.html", { 'return_array': return_array, 'outcome_variables': outcome_variables, 'strategy_description': strategy_description })
 
         # Bollinger Bands
         indicator_bb = BollingerBands(close=data["Close"], window=12, window_dev=2)

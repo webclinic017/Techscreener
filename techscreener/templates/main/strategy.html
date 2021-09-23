@@ -44,10 +44,11 @@
 
                 <p>
                     {% for i in range(6,13) %}
-                    {% set j = i - 6 %}
+                    {% with j = i - 6 %}
                     <p>
                         {{ outcome_variables[j] }} - {{ company_statistics[i] }}
                     </p>
+					{% endwith %}
                     {% endfor %}
                 </p>
 
