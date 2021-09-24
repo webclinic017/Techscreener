@@ -44,10 +44,9 @@
         {% set j = i-6 %}
         
           <ul class="list-star">
-              {{ outcome_variables[j] }} : <span class="text-dark"></span>{{ x[1][i] }}
+              <li>{{ outcome_variables[j] }} : <span class="text-dark"></span>{{ '%0.2f'| format(x[1][i]|float)  }} </li>
           </ul> 
-          {% endfor %}  
-          {% endfor %}
+        {% endfor %}  
       </div>
     </div>
   </div>
@@ -83,5 +82,7 @@
   </div>
 
 </div>
+
+{% endfor %}
 
 {% endblock %}
