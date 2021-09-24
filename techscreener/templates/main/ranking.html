@@ -2,17 +2,18 @@
 
 {% block content %}
 
-{% for x in return_array %}
+{% for x in return_array[:15] %}
+{% set String = x[0].split('_') %}
 <div class="row">
 
   <div class="col-md-6 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
         <div class="d-flex align-items-center justify-content-between">
-          <h4 class="card-title">Company - {{ x[0] }}</h4>
+          <h4 class="card-title">Company - {{ String[0] }}</h4>
           <button type="button" class="btn btn-outline-success btn-icon-text">
             <i class="mdi mdi-chart-areaspline btn-icon-prepend"></i>
-            {{ x[0] }}
+            {{ String[1] }}
           </button>
         </div>
         <div class="card-description">
@@ -20,26 +21,32 @@
         </div>
         <p>
           <button type="button" class="btn btn-inverse-success btn-fw">Buying Condition</button>
-          {% for x in strategy_description[x[0]|slice:"0:4"]['buy condition'] %}
+          {% for x in strategy_description[String[1]]['buy condition'] %}
           <ul class="list-arrow">          
-            <li>{{ x }}</li>
+            <li>
+              {{ x }}
+            </li>
           </ul>
-          {% endfor %}      
+          {% endfor %}    
           <button type="button" class="btn btn-inverse-danger btn-fw">Selling Condition</button>
           {% for x in strategy_description[String[1]]['sell condition'] %}
           <ul class="list-ticked">
-            <li>{{ x }}</li>
+            <li>
+              {{ x }}
+            </li>
           </ul>
           {% endfor %}
         </p>
-
         <div class="card-title title-primary">
           Overview
         </div>
-          {% for i in range(6,13) %}
+        {% for i in range(6,13) %}
+        {% set j = i-6 %}
+        
           <ul class="list-star">
-              {{ outcome_variables[i-6] }} : <span class="text-dark"></span>{{ x[1][i] }}
-          </ul>   
+              {{ outcome_variables[j] }} : <span class="text-dark"></span>{{ x[1][i] }}
+          </ul> 
+          {% endfor %}  
           {% endfor %}
       </div>
     </div>
@@ -76,7 +83,5 @@
   </div>
 
 </div>
-{% endwith %}
-{% endfor %}
 
 {% endblock %}

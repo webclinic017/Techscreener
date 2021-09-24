@@ -15,6 +15,7 @@ from ta.volatility import BollingerBands
 from ta.volume import MFIIndicator
 from services.strategy_backtesting import company_ranking, strategy_backtest
 
+
 # Create your views here.
 
 class RankingView(APIView):
@@ -28,11 +29,20 @@ class RankingView(APIView):
         return render(request, "main/ranking.html", { 'return_array': return_array, 'outcome_variables': outcome_variables, 'strategy_description': strategy_description })
     
     @register.filter(name='split')
-    def split(value, key):
+    def split(value):
         """
             Returns the value turned into a list.
         """
-        return value.split(key)
+        dic = value.split('_')
+        return dic
+
+    def get_value(dic,i):
+        """
+            Returns the value turned into a list.
+        """
+        return dic[i]
+    
+    register.filter(get_value)
 
 class VisualizationView(APIView):
     def post(self, request):

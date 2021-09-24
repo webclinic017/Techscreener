@@ -112,9 +112,9 @@
 								<select class="form-control" placeholder="Company name"
 									aria-label="Company name" name="company">
 									<option value="" disabled selected>-- Select a company --</option>
-									{% for key, value in company.items %}
+									{% for key in company %}
 										<option value="{{ key }}">
-											{{ value }}
+											{{ company[key] }}
 										</option>
 									{% endfor %}
 								</select>
@@ -134,9 +134,9 @@
 								<select class="form-control" placeholder="Company name"
 									aria-label="Company name" name="company">
 									<option value="" disabled selected>-- Select a company --</option>
-									{% for key, value in company.items %}
+									{% for key in company %}
 										<option value="{{ key }}">
-											{{ value }}
+											{{ company[key] }}
 										</option>
 									{% endfor %}
 								</select>

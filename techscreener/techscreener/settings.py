@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-import os.path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -61,9 +61,15 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'techscreener.urls'
 
 TEMPLATES = [
+        {
+        'BACKEND': 'django.template.backends.jinja2.Jinja2',
+        'DIRS': [TEMPLATE_DIR],
+        'APP_DIRS': True,
+        'OPTIONS': {'environment': 'techscreener.jinja2.Environment',}, 
+    },
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATE_DIR,],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
