@@ -23,9 +23,11 @@
 			<div class="card-body">
 
 				<h3 class="card-title">Indicators in the last 10 minutes</h3>
-                {% for table in tables %}
-                    {{ table|safe }}
-                {% endfor %}
+				<div class="table-responsive">
+					{% for table in tables %}
+						{{ table|safe }}
+					{% endfor %}
+				</div>
 			</div>
 		</div>
 	</div>
@@ -43,6 +45,11 @@
 <script type="text/javascript">
     var graphs = {{ graphJSON | safe }};
     Plotly.plot('chart', graphs,{});        
+</script>
+<script type="text/javascript">
+	let span = document.querySelector("span");
+	let classes = span.classList;
+	classes.add("d");
 </script>
 
 {% endblock %}

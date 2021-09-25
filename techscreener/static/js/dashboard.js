@@ -1,4 +1,13 @@
 (function($) {
+	if ($(".dataframe")[0]){
+		$(".dataframe").each(function(i){
+			$(this).addClass("table");
+			$(this).removeClass("dataframe");
+			$(this).attr('border', '0');
+		});
+	} else {
+		// Do something if class does not exist
+	}
 	'use strict';
 	$(function() {
 		var salesDifferencedata = {
