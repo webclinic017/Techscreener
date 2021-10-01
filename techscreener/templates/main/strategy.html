@@ -20,48 +20,84 @@
 				<p class="card-description mb-4">
 					Strategy - {{ strategy }}
 				</p>
-				<div class="template-demo">
-					<h1>Strategy Description</h1>
+
+				<p>
+					<button type="button" class="btn btn-inverse-success btn-fw">Buying Condition</button>
+				<ul class="list-arrow">
+					{% for x in strategy_description[strategy]['buy condition'] %}
+					<li>
+						{{ x }}
+					</li>
+					{% endfor %}
+				</ul>
+				<button type="button" class="btn btn-inverse-danger btn-fw">Selling Condition</button>
+
+				<ul class="list-ticked">
+					{% for x in strategy_description[strategy]['sell condition'] %}
+					<li>
+						{{ x }}
+					</li>
+					{% endfor %}
+				</ul>
+				</p>
+
+				<div class="card-title title-primary">
+					Overview
 				</div>
-				
-                <p>Buy a position when:</p>
 
-                {% for x in strategy_description[strategy]['buy condition'] %}
-                    <ul>                    
-                        <li>{{ x }}</li>
-                    </ul>
-                {% endfor %}            
-    
-                <p>Close the position when:</p>
-                
-                {% for x in strategy_description[strategy]['sell condition'] %}
-                    <ul>
-                        <li>{{ x }}</li>
-                    </ul>
-                {% endfor %}
+				<ul class="list-star">
+					{% for i in range(6,13) %}
+					{% with j = i - 6 %}
 
-                </p>
+					<li>{{ outcome_variables[j] }} : <span class="text-dark"></span>{{ '%0.2f'|
+						format(company_statistics[i]|float) }} </li>
 
-                <p>
-                    {% for i in range(6,13) %}
-                    {% with j = i - 6 %}
-                    <p>
-                        {{ outcome_variables[j] }} - {{ company_statistics[i] }}
-                    </p>
 					{% endwith %}
-                    {% endfor %}
-                </p>
+					{% endfor %}
+				</ul>
 
 			</div>
 		</div>
 	</div>
-	<div class="col-md-6 grid-margin stretch-card">
-		<div class="card">
-			<div class="card-body">
-				<h3 class="card-title">Graph to go here</h3>
+	<div class="col-lg-6 d-flex flex-column">
+		<div class="row flex-grow">
+			<div class="col-12 col-lg-4 col-lg-12 grid-margin stretch-card">
+				<div class="card card-rounded">
+					<div class="card-body">
+						<div class="d-sm-flex justify-content-between align-items-start">
+							<div>
+								<h4 class="card-title card-title-dash">Visualized Data</h4>
+								<h5 class="card-subtitle card-subtitle-dash">View the plot of SMA and Closing Price over
+									the last year</h5>
+							</div>
+							<div id="performance-line-legend">
+								<div class="chartjs-legend">
+									<ul style="list-style: none;">
+										<li style="list-style: none;"><span
+												style="background-color:#525769; padding: 0.3rem;"></span>SMA 10</li>
+										<li style="list-style: none;"><span
+												style="background-color:#52CDFF; padding: 0.3rem;"></span>Close</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="chartjs-wrapper mt-5">
+							<div class="chartjs-size-monitor">
+								<div class="chartjs-size-monitor-expand">
+									<div class=""></div>
+								</div>
+								<div class="chartjs-size-monitor-shrink">
+									<div class=""></div>
+								</div>
+							</div>
+							<canvas id="performaneLine" style="display: block; width: 637px; height: 350px;"
+								class="chartjs-render-monitor" width="637" height="350"></canvas>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>  
+</div>
 
 {% endblock %}

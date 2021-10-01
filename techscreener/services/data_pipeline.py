@@ -7,7 +7,7 @@ import pandas as pd
 
 def pipeline_intraday(ticker):
   params = {
-      'access_key' : 'a2b5f680a25097eea88016bed0298957'
+      'access_key' : '0f6a05295cb99df83172b6be1676f7e7'
   }
   response = requests.get(f'http://api.marketstack.com/v1/tickers/{ticker}/eod',params)
   response = response.json()

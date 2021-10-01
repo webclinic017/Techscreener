@@ -21,32 +21,32 @@
         </div>
         <p>
           <button type="button" class="btn btn-inverse-success btn-fw">Buying Condition</button>
+        <ul class="list-arrow">
           {% for x in strategy_description[String[1]]['buy condition'] %}
-          <ul class="list-arrow">          
-            <li>
-              {{ x }}
-            </li>
-          </ul>
-          {% endfor %}    
-          <button type="button" class="btn btn-inverse-danger btn-fw">Selling Condition</button>
-          {% for x in strategy_description[String[1]]['sell condition'] %}
-          <ul class="list-ticked">
-            <li>
-              {{ x }}
-            </li>
-          </ul>
+          <li>
+            {{ x }}
+          </li>
           {% endfor %}
+        </ul>
+        <button type="button" class="btn btn-inverse-danger btn-fw">Selling Condition</button>
+        <ul class="list-ticked">
+          {% for x in strategy_description[String[1]]['sell condition'] %}
+          <li>
+            {{ x }}
+          </li>
+          {% endfor %}
+        </ul>
         </p>
         <div class="card-title title-primary">
           Overview
         </div>
         {% for i in range(6,13) %}
         {% set j = i-6 %}
-        
-          <ul class="list-star">
-              <li>{{ outcome_variables[j] }} : <span class="text-dark"></span>{{ '%0.2f'| format(x[1][i]|float)  }} </li>
-          </ul> 
-        {% endfor %}  
+
+        <ul class="list-star">
+          <li>{{ outcome_variables[j] }} : <span class="text-dark"></span>{{ '%0.2f'| format(x[1][i]|float) }} </li>
+        </ul>
+        {% endfor %}
       </div>
     </div>
   </div>

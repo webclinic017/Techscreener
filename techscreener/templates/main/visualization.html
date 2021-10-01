@@ -7,10 +7,10 @@
 		<div class="card text-center pt-4 pb-4" style="background-color: #f0f3f6; box-shadow: none;">
 			<div class="card-body">
 				<h1 class="text-dark font-weight-bold display-2">Visualization</h1>
-                <h3 class="card-title">Company - {{ company }}</h3>
+				<h3 class="card-title">Company - {{ company }}</h3>
 				<p class="card-description mb-4">
-					Volume - {{ volume }}<br/>
-                    Current Price - {{ closing_price }}
+					Volume - {{ volume }}<br />
+					Current Price - {{ closing_price }}
 				</p>
 			</div>
 		</div>
@@ -18,38 +18,61 @@
 </div>
 
 <div class="row">
-	<div class="col-md-6 grid-margin stretch-card">
+	<div class="col-lg-12 d-flex flex-column">
+		<div class="row flex-grow">
+			<div class="col-12 col-lg-4 col-lg-12 grid-margin stretch-card">
+				<div class="card card-rounded">
+					<div class="card-body">
+						<div class="d-sm-flex justify-content-between align-items-start">
+							<div>
+								<h4 class="card-title card-title-dash">Visualized Data</h4>
+								<h5 class="card-subtitle card-subtitle-dash">View the plot of SMA and Closing Price over
+									the last year</h5>
+							</div>
+							<div id="performance-line-legend">
+								<div class="chartjs-legend">
+									<ul style="list-style: none;">
+										<li style="list-style: none;"><span
+												style="background-color:#525769; padding: 0.3rem;"></span>SMA 10</li>
+										<li style="list-style: none;"><span
+												style="background-color:#52CDFF; padding: 0.3rem;"></span>Close</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="chartjs-wrapper mt-5">
+							<div class="chartjs-size-monitor">
+								<div class="chartjs-size-monitor-expand">
+									<div class=""></div>
+								</div>
+								<div class="chartjs-size-monitor-shrink">
+									<div class=""></div>
+								</div>
+							</div>
+							<canvas id="performaneLine" style="display: block; width: 637px; height: 250px;"
+								class="chartjs-render-monitor" width="637" height="250"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12 grid-margin stretch-card">
 		<div class="card">
 			<div class="card-body">
 
 				<h3 class="card-title">Indicators in the last 10 minutes</h3>
 				<div class="table-responsive">
 					{% for table in tables %}
-						{{ table|safe }}
+					{{ table|safe }}
 					{% endfor %}
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="col-md-6 grid-margin stretch-card">
-		<div class="card">
-			<div class="card-body">
-				<h3 class="card-title">Graph to go here</h3>
-                <div id="chart"></div>
-			</div>
-		</div>
-	</div>
-</div>  
-
-<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-<script type="text/javascript">
-    var graphs = {{ graphJSON | safe }};
-    Plotly.plot('chart', graphs,{});        
-</script>
-<script type="text/javascript">
-	let span = document.querySelector("span");
-	let classes = span.classList;
-	classes.add("d");
-</script>
+</div>
 
 {% endblock %}

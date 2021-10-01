@@ -20,6 +20,9 @@ from services.strategy_backtesting import company_ranking, strategy_backtest
 
 class RankingView(APIView):
     def post(self, request):
+        if not hasattr(request, 'username'):
+            response = redirect('/login?message=Login to view the page')
+            return response
         index = request.data['index']
         if index == 'Large-Cap Stocks':
             return_array = largeCapReturns
@@ -46,6 +49,9 @@ class RankingView(APIView):
 
 class VisualizationView(APIView):
     def post(self, request):
+        if not hasattr(request, 'username'):
+            response = redirect('/login?message=Login to view the page')
+            return response
         company = request.data['company']
         data = pipeline_intraday(company)
         data['SMA10'] = trend.sma_indicator(close = data['Close'], window = 10, fillna = False)
@@ -73,6 +79,9 @@ class VisualizationView(APIView):
 
 class StrategyView(APIView):
     def post(self, request):
+        if not hasattr(request, 'username'):
+            response = redirect('/login?message=Login to view the page')
+            return response
         company = request.data['company']
         strategy = request.data['strategy']
         company_statistics = strategy_backtest(company,strategy)
