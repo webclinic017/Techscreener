@@ -4,16 +4,16 @@ register=template.Library()
 from rest_framework.views import APIView
 import pandas as pd
 import json
-import plotly
-import plotly.express as px 
-from services.data_collection import largeCapReturns, mediumCapReturns
+#import plotly
+#import plotly.express as px 
+from services.data_collection import largeCapReturns, mediumCapReturns,LargeClosePriceList,MediumClosePriceList
 from services.company_data import analysis_companies, Strategies,outcome_variables, stocks, strategy_description
 from services.data_pipeline import pipeline_intraday
 from ta import momentum
 from ta import trend
 from ta.volatility import BollingerBands
 from ta.volume import MFIIndicator
-from services.strategy_backtesting import company_ranking, strategy_backtest
+from services.strategy_backtesting import dataFormatting, strategy_backtest
 
 
 # Create your views here.
@@ -24,10 +24,15 @@ class RankingView(APIView):
             response = redirect('/login?message=Login to view the page')
             return response
         index = request.data['index']
+        # The closePriceList is a dictionary that has all the all the close prices in the list format
+        # The prices can be accessed like this 
+        # list = companyCloseList['<company ticker>']
         if index == 'Large-Cap Stocks':
             return_array = largeCapReturns
+            closePriceList = LargeClosePriceList
         else:
             return_array = mediumCapReturns
+            closePriceList =  MediumClosePriceList
         
         return render(request, "main/ranking.html", { 'return_array': return_array, 'outcome_variables': outcome_variables, 'strategy_description': strategy_description })
     
@@ -72,10 +77,10 @@ class VisualizationView(APIView):
         closing_price = data.iloc[-1,-9]
         volume = data.iloc[-1,-8]
         df = data.iloc[-11:-1,-5:-1]
-        fig = px.line(data, x = data.index, y = ["Close","SMA10"])
-        graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+        #fig = px.line(data, x = data.index, y = ["Close","SMA10"])
+        #graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
 
-        return render(request, "main/visualization.html", { 'closing_price': closing_price, 'volume': volume, 'company': company, 'tables': [df.to_html()], 'titles': ['SMA','BB_BBM','BB_BBH','BB_BBL','MACD','RSI','MFI'], 'graphJSON': graphJSON })
+        return render(request, "main/visualization.html", { 'closing_price': closing_price, 'volume': volume, 'company': company, 'tables': [df.to_html()], 'titles': ['SMA','BB_BBM','BB_BBH','BB_BBL','MACD','RSI','MFI']})
 
 class StrategyView(APIView):
     def post(self, request):
@@ -84,7 +89,8 @@ class StrategyView(APIView):
             return response
         company = request.data['company']
         strategy = request.data['strategy']
-        company_statistics = strategy_backtest(company,strategy)
+        # The company Close list is a python list that has all the all the close prices in the list format
+        company_statistics,companyList = strategy_backtest(company,strategy)
         
         return render(request, "main/strategy.html", { 
             'company': company, 'strategy': strategy, 'company_statistics': company_statistics, 'strategy_description': strategy_description, 'outcome_variables': outcome_variables

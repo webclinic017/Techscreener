@@ -6,29 +6,29 @@ from .data_pipeline import pipeline_intraday
 import matplotlib.pyplot as plt
 import matplotlib as mpl
 
+# if you pass the column and the dataset it will give you the data of that column in the list format
+def dataFormatting(column,data):
+  columnList = []
+  if data.index.name == column:
+    date_time = data.index.strftime("%b %d %Y %-I:%M %p")
+    dateTimeList = date_time.tolist()
+    columnList= dateTimeList
+  else:
+    columnPriceList = data['Close'].tolist()
+    columnList = columnPriceList
+  return columnList
 
-def save_image(data, company):
-    image_location = []
-    plt.figure(figsize=(6, 4))
-    mpl.rcParams["lines.linewidth"] = 2
-    mpl.rcParams["lines.linestyle"] = "--"
-    fig = plt.plot(
-        data.index,
-        data.Close,
-    )
-    plt.xlabel("Time")
-    plt.ylabel("Closing Price in USD")
-    plt.savefig(f"static/images/{company}.png")
-    image_location.append(f"static/images/{company}.png")
-    fig.pop(0).remove()
+    
 
 
 def company_ranking(companies):
     return_percentage = {}
+    companyCloseList = {}
     for x in companies:
         company = x
         df = pipeline_intraday(x)
-        save_image(df, company)
+        companyList = dataFormatting('CLose',df)
+        companyCloseList['{company}'] = companyList
         for keys in Strategies:
             bt = Backtest(df, Strategies[keys], cash=100000, commission=0.002)
             company_strategy = bt.run()
@@ -36,11 +36,12 @@ def company_ranking(companies):
     return_array = sorted(
         return_percentage.items(), key=lambda x: x[1][6], reverse=True
     )
-    return return_array
+    return return_array,companyCloseList
 
 
 def strategy_backtest(company, strategy):
     x = pipeline_intraday(company)
+    companyList = dataFormatting('CLose',x)
     bt = Backtest(x, Strategies[strategy], cash=100000, commission=0.002)
     company_stats = bt.run()
-    return company_stats
+    return company_stats,companyList
