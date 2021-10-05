@@ -6,7 +6,7 @@ import pandas as pd
 import json
 #import plotly
 #import plotly.express as px 
-from services.data_collection import largeCapReturns, mediumCapReturns,LargeClosePriceList,MediumClosePriceList
+from services.data_collection import largeCapReturns, mediumCapReturns,LargeClosePriceList,LargeDateList,MediumDateList,MediumClosePriceList
 from services.company_data import analysis_companies, Strategies,outcome_variables, stocks, strategy_description
 from services.data_pipeline import pipeline_intraday
 from ta import momentum
@@ -30,9 +30,11 @@ class RankingView(APIView):
         if index == 'Large-Cap Stocks':
             return_array = largeCapReturns
             closePriceList = LargeClosePriceList
+            DateList = LargeDateList
         else:
             return_array = mediumCapReturns
             closePriceList =  MediumClosePriceList
+            DateList = MediumDateList
         
         return render(request, "main/ranking.html", { 'return_array': return_array, 'outcome_variables': outcome_variables, 'strategy_description': strategy_description })
     
@@ -89,8 +91,8 @@ class StrategyView(APIView):
             return response
         company = request.data['company']
         strategy = request.data['strategy']
-        # The company Close list is a python list that has all the all the close prices in the list format
-        company_statistics,companyList = strategy_backtest(company,strategy)
+        # The ClosePriceList is a python list that has all the all the close prices in the list format.
+        company_statistics,ClosePriceList,DateList = strategy_backtest(company,strategy)
         
         return render(request, "main/strategy.html", { 
             'company': company, 'strategy': strategy, 'company_statistics': company_statistics, 'strategy_description': strategy_description, 'outcome_variables': outcome_variables
