@@ -1,6 +1,6 @@
-(function($) {
-	if ($(".dataframe")[0]){
-		$(".dataframe").each(function(i){
+(function ($) {
+	if ($(".dataframe")[0]) {
+		$(".dataframe").each(function (i) {
 			$(this).addClass("table");
 			$(this).removeClass("dataframe");
 			$(this).attr('border', '0');
@@ -9,25 +9,25 @@
 		// Do something if class does not exist
 	}
 	'use strict';
-	$(function() {
+	$(function () {
 		var salesDifferencedata = {
 			labels: ["APPL", "MSFT", "TSLA", "GOOG", "NFLX"],
 			datasets: [{
 				label: 'Best Sellers',
 				data: [36, 33, 27, 25, 19],
 				backgroundColor: [
-						'#8169f2',
-						'#6a4df5',
-						'#4f2def',
-						'#2b0bc5',
-						'#180183',
+					'#8169f2',
+					'#6a4df5',
+					'#4f2def',
+					'#2b0bc5',
+					'#180183',
 				],
 				borderColor: [
-						'#8169f2',
-						'#6a4df5',
-						'#4f2def',
-						'#2b0bc5',
-						'#180183',
+					'#8169f2',
+					'#6a4df5',
+					'#4f2def',
+					'#2b0bc5',
+					'#180183',
 				],
 				borderWidth: 2,
 				fill: false
@@ -39,12 +39,12 @@
 					position: 'bottom',
 					display: false,
 					gridLines: {
-							display: false,
-							drawBorder: true,
+						display: false,
+						drawBorder: true,
 					},
 					ticks: {
-							display: false ,//this will remove only the label
-							beginAtZero: true
+						display: false,//this will remove only the label
+						beginAtZero: true
 					}
 				}],
 				yAxes: [{
@@ -66,12 +66,12 @@
 				backgroundColor: 'rgba(31, 59, 179, 1)',
 			},
 			plugins: {
-			datalabels: {
+				datalabels: {
 					display: true,
 					align: 'start',
 					color: 'white',
 				}
-			}				
+			}
 
 		};
 		if ($("#salesDifference").length) {
@@ -112,20 +112,20 @@
 			responsive: true,
 			cutoutPercentage: 80,
 			legend: {
-					display: false,
+				display: false,
 			},
 			animation: {
-					animateScale: true,
-					animateRotate: true
+				animateScale: true,
+				animateRotate: true
 			},
 			plugins: {
 				datalabels: {
-					 display: false,
-					 align: 'center',
-					 anchor: 'center'
+					display: false,
+					align: 'center',
+					anchor: 'center'
 				}
-			}				
-	
+			}
+
 		};
 		if ($("#bestSellers").length) {
 			var pieChartCanvas = $("#bestSellers").get(0).getContext("2d");
@@ -186,7 +186,7 @@
 					'#444bee'
 				],
 				borderColor: [
-						"#444bee",
+					"#444bee",
 
 				],
 				borderWidth: 1,
@@ -199,7 +199,7 @@
 					display: false,
 					stacked: true,
 					gridLines: {
-							display: false //this will remove only the label
+						display: false //this will remove only the label
 					},
 				}],
 				yAxes: [{
@@ -213,7 +213,7 @@
 			},
 			elements: {
 				point: {
-						radius: 0
+					radius: 0
 				},
 				plugins: {
 					datalabels: {
@@ -221,9 +221,9 @@
 						align: 'center',
 						anchor: 'center'
 					}
-				}				
-		
-		}
+				}
+
+			}
 		};
 		if ($("#barChartStacked").length) {
 			var barChartCanvas = $("#barChartStacked").get(0).getContext("2d");
@@ -241,10 +241,10 @@
 				label: 'Margin',
 				data: [45, 45, 70, 70, 50, 50, 70, 60, 65, 60, 55, 55],
 				backgroundColor: [
-						'#0ddbb9',
+					'#0ddbb9',
 				],
 				borderColor: [
-						'#0ddbb9'
+					'#0ddbb9'
 				],
 				borderWidth: 2,
 				fill: false,
@@ -254,7 +254,7 @@
 				borderDash: [3, 4],
 				data: [35, 35, 60, 60, 40, 40, 60, 50, 55, 50, 45, 45],
 				borderColor: [
-						'#464dee',
+					'#464dee',
 				],
 				borderWidth: 2,
 				fill: false,
@@ -264,7 +264,7 @@
 				label: 'Cost',
 				data: [25, 25, 50, 50, 30, 30, 50, 40, 45, 40, 35, 35],
 				borderColor: [
-						'#ee5b5b',
+					'#ee5b5b',
 				],
 				borderWidth: 2,
 				fill: false,
@@ -273,36 +273,36 @@
 		};
 		var revenueChartOptions = {
 			scales: {
-					yAxes: [{
-						display: true,
-						gridLines: {
-							drawBorder: false,
-							display: false,
-						},
-					}],
-					xAxes: [{
-						position: 'bottom',
-						gridLines: {
-							drawBorder: false,
-							display: false,
-						},
-						ticks: {
-							beginAtZero: true,
-							stepSize: 30
-						}
-					}],
+				yAxes: [{
+					display: true,
+					gridLines: {
+						drawBorder: false,
+						display: false,
+					},
+				}],
+				xAxes: [{
+					position: 'bottom',
+					gridLines: {
+						drawBorder: false,
+						display: false,
+					},
+					ticks: {
+						beginAtZero: true,
+						stepSize: 30
+					}
+				}],
 
 			},
 			legend: {
-					display: false,
+				display: false,
 			},
-			legendCallback: function(chart) {
+			legendCallback: function (chart) {
 				var text = [];
 				text.push('<ul class="' + chart.id + '-legend">');
 				for (var i = 0; i < chart.data.datasets.length; i++) {
 					text.push('<li><span class="legend-box" style="background:' + chart.data.datasets[i].borderColor + ';"></span><span class="legend-label" style="">');
 					if (chart.data.datasets[i].label) {
-							text.push(chart.data.datasets[i].label);
+						text.push(chart.data.datasets[i].label);
 					}
 					text.push('</span></li>');
 				}
@@ -326,8 +326,8 @@
 					align: 'center',
 					anchor: 'center'
 				}
-			}				
-	
+			}
+
 		};
 		if ($("#revenue-for-last-month-chart").length) {
 			var lineChartCanvas = $("#revenue-for-last-month-chart").get(0).getContext("2d");
@@ -345,10 +345,10 @@
 				label: 'Margin',
 				data: [45, 45, 70, 70, 50, 50, 70, 60, 65, 60, 55, 55],
 				backgroundColor: [
-						'#0ddbb9',
+					'#0ddbb9',
 				],
 				borderColor: [
-						'#0ddbb9'
+					'#0ddbb9'
 				],
 				borderWidth: 2,
 				fill: false,
@@ -358,7 +358,7 @@
 				borderDash: [3, 4],
 				data: [35, 35, 60, 60, 40, 40, 60, 50, 55, 50, 45, 45],
 				borderColor: [
-						'#464dee',
+					'#464dee',
 				],
 				borderWidth: 2,
 				fill: false,
@@ -368,7 +368,7 @@
 				label: 'Cost',
 				data: [25, 25, 50, 50, 30, 30, 50, 40, 45, 40, 35, 35],
 				borderColor: [
-						'#ee5b5b',
+					'#ee5b5b',
 				],
 				borderWidth: 2,
 				fill: false,
@@ -400,13 +400,13 @@
 			legend: {
 				display: false,
 			},
-			legendCallback: function(chart) {
+			legendCallback: function (chart) {
 				var text = [];
 				text.push('<ul class="' + chart.id + '-legend">');
 				for (var i = 0; i < chart.data.datasets.length; i++) {
 					text.push('<li><span class="legend-box" style="background:' + chart.data.datasets[i].borderColor + ';"></span><span class="legend-label" style="">');
 					if (chart.data.datasets[i].label) {
-							text.push(chart.data.datasets[i].label);
+						text.push(chart.data.datasets[i].label);
 					}
 					text.push('</span></li>');
 				}
@@ -430,8 +430,8 @@
 					align: 'center',
 					anchor: 'center'
 				}
-			}				
-	
+			}
+
 		};
 		if ($("#serveLoading").length) {
 			var lineChartCanvas = $("#serveLoading").get(0).getContext("2d");
@@ -445,38 +445,38 @@
 		var dataManagedData = {
 			labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "No", "Dec"],
 			datasets: [{
-						label: 'Margin',
-						data: [45, 45, 70, 70, 50, 50, 70, 60, 65, 60, 55, 55],
-						backgroundColor: [
-							'#0ddbb9',
-						],
-						borderColor: [
-							'#0ddbb9'
-						],
-						borderWidth: 2,
-						fill: false,
-					},
-					{
-						label: 'Product',
-						borderDash: [3, 4],
-						data: [35, 35, 60, 60, 40, 40, 60, 50, 55, 50, 45, 45],
-						borderColor: [
-								'#464dee',
-						],
-						borderWidth: 2,
-						fill: false,
-						pointBorderWidth: 4,
-					},
-					{
-						label: 'Cost',
-						data: [25, 25, 50, 50, 30, 30, 50, 40, 45, 40, 35, 35],
-						borderColor: [
-								'#ee5b5b',
-						],
-						borderWidth: 2,
-						fill: false,
-						pointBorderWidth: 4,
-					}
+				label: 'Margin',
+				data: [45, 45, 70, 70, 50, 50, 70, 60, 65, 60, 55, 55],
+				backgroundColor: [
+					'#0ddbb9',
+				],
+				borderColor: [
+					'#0ddbb9'
+				],
+				borderWidth: 2,
+				fill: false,
+			},
+			{
+				label: 'Product',
+				borderDash: [3, 4],
+				data: [35, 35, 60, 60, 40, 40, 60, 50, 55, 50, 45, 45],
+				borderColor: [
+					'#464dee',
+				],
+				borderWidth: 2,
+				fill: false,
+				pointBorderWidth: 4,
+			},
+			{
+				label: 'Cost',
+				data: [25, 25, 50, 50, 30, 30, 50, 40, 45, 40, 35, 35],
+				borderColor: [
+					'#ee5b5b',
+				],
+				borderWidth: 2,
+				fill: false,
+				pointBorderWidth: 4,
+			}
 			],
 		};
 		var dataManagedOptions = {
@@ -503,13 +503,13 @@
 			legend: {
 				display: false,
 			},
-			legendCallback: function(chart) {
+			legendCallback: function (chart) {
 				var text = [];
 				text.push('<ul class="' + chart.id + '-legend">');
 				for (var i = 0; i < chart.data.datasets.length; i++) {
 					text.push('<li><span class="legend-box" style="background:' + chart.data.datasets[i].borderColor + ';"></span><span class="legend-label" style="">');
 					if (chart.data.datasets[i].label) {
-							text.push(chart.data.datasets[i].label);
+						text.push(chart.data.datasets[i].label);
 					}
 					text.push('</span></li>');
 				}
@@ -533,7 +533,7 @@
 					align: 'center',
 					anchor: 'center'
 				}
-			}					
+			}
 		};
 		if ($("#dataManaged").length) {
 			var lineChartCanvas = $("#dataManaged").get(0).getContext("2d");
@@ -550,35 +550,35 @@
 				label: 'Margin',
 				data: [45, 45, 70, 70, 50, 50, 70, 60, 65, 60, 55, 55],
 				backgroundColor: [
-						'#0ddbb9',
+					'#0ddbb9',
 				],
 				borderColor: [
-						'#0ddbb9'
+					'#0ddbb9'
 				],
 				borderWidth: 2,
 				fill: false,
-				},
-				{
+			},
+			{
 				label: 'Product',
 				borderDash: [3, 4],
 				data: [35, 35, 60, 60, 40, 40, 60, 50, 55, 50, 45, 45],
 				borderColor: [
-						'#464dee',
+					'#464dee',
 				],
 				borderWidth: 2,
 				fill: false,
 				pointBorderWidth: 4,
-				},
-				{
+			},
+			{
 				label: 'Cost',
 				data: [25, 25, 50, 50, 30, 30, 50, 40, 45, 40, 35, 35],
 				borderColor: [
-						'#ee5b5b',
+					'#ee5b5b',
 				],
 				borderWidth: 2,
 				fill: false,
 				pointBorderWidth: 4,
-				}
+			}
 			],
 		};
 		var salesTraficOptions = {
@@ -606,13 +606,13 @@
 			legend: {
 				display: false,
 			},
-			legendCallback: function(chart) {
+			legendCallback: function (chart) {
 				var text = [];
 				text.push('<ul class="' + chart.id + '-legend">');
 				for (var i = 0; i < chart.data.datasets.length; i++) {
 					text.push('<li><span class="legend-box" style="background:' + chart.data.datasets[i].borderColor + ';"></span><span class="legend-label" style="">');
 					if (chart.data.datasets[i].label) {
-							text.push(chart.data.datasets[i].label);
+						text.push(chart.data.datasets[i].label);
 					}
 					text.push('</span></li>');
 				}
@@ -620,15 +620,15 @@
 				return text.join("");
 			},
 			elements: {
-					point: {
-						radius: 0
-					},
-					line: {
-						tension: 0
-					}
+				point: {
+					radius: 0
+				},
+				line: {
+					tension: 0
+				}
 			},
 			tooltips: {
-					backgroundColor: 'rgba(2, 171, 254, 1)',
+				backgroundColor: 'rgba(2, 171, 254, 1)',
 			},
 			plugins: {
 				datalabels: {
@@ -636,8 +636,8 @@
 					align: 'center',
 					anchor: 'center'
 				}
-			}				
-	
+			}
+
 		};
 		if ($("#salesTrafic").length) {
 			var lineChartCanvas = $("#salesTrafic").get(0).getContext("2d");
@@ -653,42 +653,42 @@
 			labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"],
 			datasets: [
 				{
-				label: 'Cost',
-				data: [15, 25, 20, 18, 24, 20, 16, 20],
-				backgroundColor: [
+					label: 'Cost',
+					data: [15, 25, 20, 18, 24, 20, 16, 20],
+					backgroundColor: [
 						'rgba(238, 91, 91, .9)',
-				],
-				borderColor: [
+					],
+					borderColor: [
 						'#ee5b5b',
-				],
-				borderWidth: 2,
-				fill: true,
-				pointBorderWidth: 4,
+					],
+					borderWidth: 2,
+					fill: true,
+					pointBorderWidth: 4,
 				},
 				{
-				label: 'Product',
-				data: [20, 30, 25, 23, 29, 25, 21, 25],
-				backgroundColor: [
+					label: 'Product',
+					data: [20, 30, 25, 23, 29, 25, 21, 25],
+					backgroundColor: [
 						'rgba(70, 77, 238, 1)',
-				],
-				borderColor: [
+					],
+					borderColor: [
 						'#464dee',
-				],
-				borderWidth: 2,
-				fill: true,
-				pointBorderWidth: 4,
+					],
+					borderWidth: 2,
+					fill: true,
+					pointBorderWidth: 4,
 				},
 				{
-				label: 'Margin',
-				data: [25, 35, 30, 28, 33, 30, 26, 30],
-				backgroundColor: [
+					label: 'Margin',
+					data: [25, 35, 30, 28, 33, 30, 26, 30],
+					backgroundColor: [
 						'rgba(81, 225, 195, .9)',
-				],
-				borderColor: [
+					],
+					borderColor: [
 						'#51e1c3'
-				],
-				borderWidth: 2,
-				fill: true,
+					],
+					borderWidth: 2,
+					fill: true,
 				},
 			],
 		};
@@ -720,9 +720,9 @@
 				display: false,
 			},
 			elements: {
-					point: {
-						radius: 0
-					},
+				point: {
+					radius: 0
+				},
 			},
 			plugins: {
 				datalabels: {
@@ -730,7 +730,7 @@
 					align: 'center',
 					anchor: 'center'
 				}
-			}				
+			}
 		};
 		if ($("#visitorsToday").length) {
 			var lineChartCanvas = $("#visitorsToday").get(0).getContext("2d");
@@ -769,10 +769,10 @@
 				label: 'Margin',
 				data: [35, 37, 34, 36, 32],
 				backgroundColor: [
-						'#f7f7f7',
+					'#f7f7f7',
 				],
 				borderColor: [
-						'#dcdcdc'
+					'#dcdcdc'
 				],
 				borderWidth: 2,
 				fill: true,
@@ -793,7 +793,7 @@
 			elements: {
 				point: {
 					radius: 0
-				},		
+				},
 			},
 			plugins: {
 				datalabels: {
@@ -801,7 +801,7 @@
 					align: 'center',
 					anchor: 'center'
 				}
-			}				
+			}
 		};
 		if ($("#newClient").length) {
 			var lineChartCanvas = $("#newClient").get(0).getContext("2d");
@@ -817,14 +817,14 @@
 				label: 'Margin',
 				data: [37, 36, 37, 35, 36],
 				backgroundColor: [
-						'#f7f7f7',
+					'#f7f7f7',
 				],
 				borderColor: [
-						'#dcdcdc'
+					'#dcdcdc'
 				],
 				borderWidth: 2,
 				fill: true,
-			}, ],
+			},],
 		};
 		var allProductsOptions = {
 			scales: {
@@ -849,8 +849,8 @@
 					align: 'center',
 					anchor: 'center'
 				}
-			}				
-	
+			}
+
 		};
 		if ($("#allProducts").length) {
 			var lineChartCanvas = $("#allProducts").get(0).getContext("2d");
@@ -866,14 +866,14 @@
 				label: 'Margin',
 				data: [35, 37, 34, 36, 32],
 				backgroundColor: [
-						'#f7f7f7',
+					'#f7f7f7',
 				],
 				borderColor: [
-						'#dcdcdc'
+					'#dcdcdc'
 				],
 				borderWidth: 2,
 				fill: true,
-			}, ],
+			},],
 		};
 		var invoicesOptions = {
 			scales: {
@@ -888,9 +888,9 @@
 				display: false,
 			},
 			elements: {
-					point: {
-						radius: 0
-					},
+				point: {
+					radius: 0
+				},
 			},
 			plugins: {
 				datalabels: {
@@ -898,15 +898,19 @@
 					align: 'center',
 					anchor: 'center'
 				}
-			}				
-	
+			}
+
 		};
-		if ($("#invoices").length) {
-			var lineChartCanvas = $("#invoices").get(0).getContext("2d");
-			var saleschart = new Chart(lineChartCanvas, {
-				type: 'line',
-				data: invoicesData,
-				options: invoicesOptions
+		if ($(".invoices").length) {
+			const invoices = document.querySelectorAll('.invoices');
+			Array.from(invoices).forEach((element, index) => {
+				var lineChartCanvas = element.getContext("2d");
+				console.log('hi');
+				var saleschart = new Chart(lineChartCanvas, {
+					type: 'line',
+					data: invoicesData,
+					options: invoicesOptions
+				});
 			});
 		}
 		var projectsData = {
@@ -914,15 +918,15 @@
 			datasets: [{
 				label: 'Margin',
 				data: [38, 39, 37, 40, 36],
-					backgroundColor: [
-							'#f7f7f7',
-					],
+				backgroundColor: [
+					'#f7f7f7',
+				],
 				borderColor: [
-						'#dcdcdc'
+					'#dcdcdc'
 				],
 				borderWidth: 2,
 				fill: true,
-			}, ],
+			},],
 		};
 		var projectsOptions = {
 			scales: {
@@ -947,7 +951,7 @@
 					align: 'center',
 					anchor: 'center'
 				}
-			}					
+			}
 		};
 		if ($("#projects").length) {
 			var lineChartCanvas = $("#projects").get(0).getContext("2d");
@@ -963,14 +967,14 @@
 				label: 'Margin',
 				data: [35, 37, 34, 36, 32],
 				backgroundColor: [
-						'#f7f7f7',
+					'#f7f7f7',
 				],
 				borderColor: [
-						'#dcdcdc'
+					'#dcdcdc'
 				],
 				borderWidth: 2,
 				fill: true,
-			}, ],
+			},],
 		};
 		var orderRecievedOptions = {
 			scales: {
@@ -995,8 +999,8 @@
 					align: 'center',
 					anchor: 'center'
 				}
-			}				
-	
+			}
+
 		};
 		if ($("#orderRecieved").length) {
 			var lineChartCanvas = $("#orderRecieved").get(0).getContext("2d");
@@ -1012,14 +1016,14 @@
 				label: 'Margin',
 				data: [38, 35, 36, 38, 34],
 				backgroundColor: [
-						'#f7f7f7',
+					'#f7f7f7',
 				],
 				borderColor: [
-						'#dcdcdc'
+					'#dcdcdc'
 				],
 				borderWidth: 2,
 				fill: true,
-			}, ],
+			},],
 		};
 		var transactionsOptions = {
 			scales: {
@@ -1044,7 +1048,7 @@
 					align: 'center',
 					anchor: 'center'
 				}
-			}				
+			}
 		};
 		if ($("#transactions").length) {
 			var lineChartCanvas = $("#transactions").get(0).getContext("2d");
@@ -1055,48 +1059,48 @@
 			});
 		}
 		var supportTrackerData = {
-			labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", ],
+			labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",],
 			datasets: [{
 				label: 'Today',
 				data: [640, 750, 500, 400, 1200, 650, 550, 450, 400],
 				backgroundColor: [
-					'#464dee', '#464dee', '#464dee', '#464dee', '#464dee', '#464dee', '#464dee', '#464dee', '#464dee', 
+					'#464dee', '#464dee', '#464dee', '#464dee', '#464dee', '#464dee', '#464dee', '#464dee', '#464dee',
 				],
 				borderColor: [
-					'#464dee', '#464dee', '#464dee', '#464dee',  '#464dee', '#464dee', '#464dee', '#464dee', '#464dee', 
+					'#464dee', '#464dee', '#464dee', '#464dee', '#464dee', '#464dee', '#464dee', '#464dee', '#464dee',
 				],
 				borderWidth: 1,
 				fill: false
 			},
 			{
-					label: 'Yesterday',
-					data: [800, 550, 700, 600, 1100, 650, 550, 650, 850],					
-					backgroundColor: [
-						'#d8d8d8', '#d8d8d8', '#d8d8d8', '#d8d8d8', '#d8d8d8', '#d8d8d8', '#d8d8d8', '#d8d8d8', '#d8d8d8', 
-					],
-					borderColor: [
-						'#d8d8d8', '#d8d8d8', '#d8d8d8', '#d8d8d8', '#d8d8d8', '#d8d8d8', '#d8d8d8', '#d8d8d8', '#d8d8d8', 
-					],
-					borderWidth: 1,
-					fill: false
+				label: 'Yesterday',
+				data: [800, 550, 700, 600, 1100, 650, 550, 650, 850],
+				backgroundColor: [
+					'#d8d8d8', '#d8d8d8', '#d8d8d8', '#d8d8d8', '#d8d8d8', '#d8d8d8', '#d8d8d8', '#d8d8d8', '#d8d8d8',
+				],
+				borderColor: [
+					'#d8d8d8', '#d8d8d8', '#d8d8d8', '#d8d8d8', '#d8d8d8', '#d8d8d8', '#d8d8d8', '#d8d8d8', '#d8d8d8',
+				],
+				borderWidth: 1,
+				fill: false
 			}
 			]
 		};
 		var supportTrackerOptions = {
 			scales: {
 				xAxes: [{
-				stacked: true,
-				barPercentage: 0.6,
-				position: 'bottom',
-				display: true,
-				gridLines: {
-					display: false,
-					drawBorder: false,
-				},
-				ticks: {
-					display: true, //this will remove only the label
-					stepSize: 300,
-				}
+					stacked: true,
+					barPercentage: 0.6,
+					position: 'bottom',
+					display: true,
+					gridLines: {
+						display: false,
+						drawBorder: false,
+					},
+					ticks: {
+						display: true, //this will remove only the label
+						stepSize: 300,
+					}
 				}],
 				yAxes: [{
 					stacked: true,
@@ -1109,8 +1113,8 @@
 					},
 					ticks: {
 						beginAtZero: true,
-						callback: function(value, index, values) {
-						return '$' + value;
+						callback: function (value, index, values) {
+							return '$' + value;
 						}
 					},
 				}]
@@ -1118,13 +1122,13 @@
 			legend: {
 				display: false
 			},
-			legendCallback: function(chart) {
+			legendCallback: function (chart) {
 				var text = [];
 				text.push('<ul class="' + chart.id + '-legend">');
 				for (var i = 0; i < chart.data.datasets.length; i++) {
 					text.push('<li><span class="legend-box" style="background:' + chart.data.datasets[i].backgroundColor[i] + ';"></span><span class="legend-label text-dark">');
 					if (chart.data.datasets[i].label) {
-							text.push(chart.data.datasets[i].label);
+						text.push(chart.data.datasets[i].label);
 					}
 					text.push('</span></li>');
 				}
@@ -1140,7 +1144,7 @@
 					align: 'center',
 					anchor: 'center'
 				}
-			}				
+			}
 		};
 		if ($("#supportTracker").length) {
 			var barChartCanvas = $("#supportTracker").get(0).getContext("2d");
@@ -1176,7 +1180,7 @@
 			counter: true,
 			relativeGaugeSize: true,
 			gaugeColor: "#f0f0f0",
-			levelColors: [ "#fcd53b" ]
+			levelColors: ["#fcd53b"]
 		});
 		$("#productorder-gage").append('<div class="product-order"><div class="icon-inside-circle"><i class="mdi mdi-basket"></i></div></div>');
 

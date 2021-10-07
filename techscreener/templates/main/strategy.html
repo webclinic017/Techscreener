@@ -70,15 +70,11 @@
 								<h5 class="card-subtitle card-subtitle-dash">View the plot of SMA and Closing Price over
 									the last year</h5>
 							</div>
-							<div id="performance-line-legend">
-								<div class="chartjs-legend">
-									<ul style="list-style: none;">
-										<li style="list-style: none;"><span
-												style="background-color:#525769; padding: 0.3rem;"></span>SMA 10</li>
-										<li style="list-style: none;"><span
-												style="background-color:#52CDFF; padding: 0.3rem;"></span>Close</li>
-									</ul>
-								</div>
+							<div id="support-tracker-legend" class="support-tracker-legend">
+								<ul class="13-legend">
+								  <li><span class="legend-box" style="background:#464dee;"></span><span
+									  class="legend-label text-dark">Closing Price</span></li>
+								</ul>
 							</div>
 						</div>
 						<div class="chartjs-wrapper mt-5">
@@ -90,7 +86,7 @@
 									<div class=""></div>
 								</div>
 							</div>
-							<canvas id="performaneLine" style="display: block; width: 637px; height: 350px;"
+							<canvas id="strategyGraph" style="display: block; width: 637px; height: 350px;"
 								class="chartjs-render-monitor" width="637" height="350"></canvas>
 						</div>
 					</div>
@@ -99,5 +95,94 @@
 		</div>
 	</div>
 </div>
+
+<script>
+	const element = document.getElementById("strategyGraph");
+	var graphGradient = element.getContext('2d');
+	var saleGradientBg = graphGradient.createLinearGradient(5, 0, 5, 100);
+	saleGradientBg.addColorStop(0, 'rgba(26, 115, 232, 0.18)');
+	saleGradientBg.addColorStop(1, 'rgba(26, 115, 232, 0.02)');
+	var salesTopData = {
+		labels: (String("{{ date }}").split(",")).slice(0, 10),
+		datasets: [{
+			label: 'Close',
+			data: (String("{{ close }}").split(",")).slice(0, 10),
+			backgroundColor: saleGradientBg,
+			borderColor: [
+				'#1F3BB3',
+			],
+			borderWidth: 1.5,
+			fill: true, // 3: no fill
+			pointBorderWidth: 1,
+			pointRadius: [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
+			pointHoverRadius: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+			pointBackgroundColor: ['#1F3BB3)', '#1F3BB3', '#1F3BB3', '#1F3BB3', '#1F3BB3)', '#1F3BB3', '#1F3BB3', '#1F3BB3', '#1F3BB3)', '#1F3BB3', '#1F3BB3', '#1F3BB3', '#1F3BB3)'],
+			pointBorderColor: ['#fff', '#fff', '#fff', '#fff', '#fff', '#fff', '#fff', '#fff', '#fff', '#fff', '#fff', '#fff', '#fff',],
+		}]
+	};
+
+	var salesTopOptions = {
+		responsive: true,
+		maintainAspectRatio: false,
+		scales: {
+			yAxes: [{
+				gridLines: {
+					display: true,
+					drawBorder: false,
+					color: "#F0F0F0",
+					zeroLineColor: '#F0F0F0',
+				},
+				ticks: {
+					beginAtZero: false,
+					autoSkip: true,
+					maxTicksLimit: 4,
+					fontSize: 10,
+					color: "#6B778C"
+				}
+			}],
+			xAxes: [{
+				gridLines: {
+					display: false,
+					drawBorder: false,
+				},
+				ticks: {
+					beginAtZero: false,
+					autoSkip: true,
+					maxTicksLimit: 7,
+					fontSize: 10,
+					color: "#6B778C"
+				}
+			}],
+		},
+		legend: false,
+		legendCallback: function (chart) {
+			var text = [];
+			text.push('<div class="chartjs-legend"><ul>');
+			for (var i = 0; i < chart.data.datasets.length; i++) {
+				console.log(chart.data.datasets[i]); // see what's inside the obj.
+				text.push('<li>');
+				text.push('<span style="background-color:' + chart.data.datasets[i].borderColor + '">' + '</span>');
+				text.push(chart.data.datasets[i].label);
+				text.push('</li>');
+			}
+			text.push('</ul></div>');
+			return text.join("");
+		},
+
+		elements: {
+			line: {
+				tension: 0.4,
+			}
+		},
+		tooltips: {
+			backgroundColor: 'rgba(31, 59, 179, 1)',
+		}
+	}
+	var salesTop = new Chart(graphGradient, {
+		type: 'line',
+		data: salesTopData,
+		options: salesTopOptions
+	});
+</script>
 
 {% endblock %}

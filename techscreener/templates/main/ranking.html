@@ -2,22 +2,31 @@
 
 {% block content %}
 
+<script>
+  let elements = [];
+  let element;
+</script>
+
 {% for x in return_array[:15] %}
 {% set String = x[0].split('_') %}
 <div class="row">
 
-  <div class="col-md-6 grid-margin stretch-card">
+  <div class="col-md-12 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
         <div class="d-flex align-items-center justify-content-between">
-          <h4 class="card-title">Company - {{ String[0] }}</h4>
-          <button type="button" class="btn btn-outline-success btn-icon-text">
+          <h4 class="card-title">Company - &nbsp; <div class="getname" style="float: right;">{{ String[0] }}</div>
+          </h4>
+          {% for i in range(6,7) %}
+          {% set j = i-6 %}
+          <button type="button" class="btn btn-inverse-primary btn-fw">
             <i class="mdi mdi-chart-areaspline btn-icon-prepend"></i>
-            {{ String[1] }}
+            {{ outcome_variables[j] }} = {{ '%0.2f'| format(x[1][i]|float) }}
           </button>
+          {% endfor %}
         </div>
         <div class="card-description">
-          Strategy description:
+          Strategy: {{ String[1] }}
         </div>
         <p>
           <button type="button" class="btn btn-inverse-success btn-fw">Buying Condition</button>
@@ -37,50 +46,181 @@
           {% endfor %}
         </ul>
         </p>
-        <div class="card-title title-primary">
-          Overview
-        </div>
-        {% for i in range(6,13) %}
-        {% set j = i-6 %}
-
-        <ul class="list-star">
-          <li>{{ outcome_variables[j] }} : <span class="text-dark"></span>{{ '%0.2f'| format(x[1][i]|float) }} </li>
-        </ul>
-        {% endfor %}
       </div>
     </div>
   </div>
 
-  <div class="col-sm-6 grid-margin stretch-card">
+  <div class="col-lg-12 d-flex flex-column">
+    <div class="row flex-grow">
+      <div class="col-12 col-lg-4 col-lg-12 grid-margin stretch-card">
+        <div class="card card-rounded">
+          <div class="card-body">
+            <div class="d-sm-flex justify-content-between align-items-start">
+              <div>
+                <h4 class="card-title card-title-dash">Visualized Data</h4>
+                <h5 class="card-subtitle card-subtitle-dash">View the plot Closing Price over
+                  the last year</h5>
+              </div>
+              <div id="support-tracker-legend" class="support-tracker-legend">
+                <ul class="13-legend">
+                  <li><span class="legend-box" style="background:#464dee;"></span><span
+                      class="legend-label text-dark">Closing Price</span></li>
+                </ul>
+              </div>
+            </div>
+            <div class="chartjs-wrapper mt-5">
+              <div class="chartjs-size-monitor">
+                <div class="chartjs-size-monitor-expand">
+                  <div class=""></div>
+                </div>
+                <div class="chartjs-size-monitor-shrink">
+                  <div class=""></div>
+                </div>
+              </div>
+              <canvas class="rankingGraph" style="display: block; width: 637px; height: 250px;"
+                class="chartjs-render-monitor" width="637" height="250"></canvas>
+            </div>
+            <script>
+              elements = document.querySelectorAll('.rankingGraph');
+              element = elements[elements.length - 1];
+              console.log(element);
+              var graphGradient = element.getContext('2d');
+              var saleGradientBg = graphGradient.createLinearGradient(5, 0, 5, 100);
+              saleGradientBg.addColorStop(0, 'rgba(26, 115, 232, 0.18)');
+              saleGradientBg.addColorStop(1, 'rgba(26, 115, 232, 0.02)');
+              var salesTopData = {
+                labels: (String("{{ date[String[0]] }}").split(",")).slice(0,10),
+                datasets: [{
+                  label: 'Close',
+                  data: (String("{{ close[String[0]] }}").split(",")).slice(0,10),
+                  backgroundColor: saleGradientBg,
+                  borderColor: [
+                    '#1F3BB3',
+                  ],
+                  borderWidth: 1.5,
+                  fill: true, // 3: no fill
+                  pointBorderWidth: 1,
+                  pointRadius: [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
+                  pointHoverRadius: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+                  pointBackgroundColor: ['#1F3BB3)', '#1F3BB3', '#1F3BB3', '#1F3BB3', '#1F3BB3)', '#1F3BB3', '#1F3BB3', '#1F3BB3', '#1F3BB3)', '#1F3BB3', '#1F3BB3', '#1F3BB3', '#1F3BB3)'],
+                  pointBorderColor: ['#fff', '#fff', '#fff', '#fff', '#fff', '#fff', '#fff', '#fff', '#fff', '#fff', '#fff', '#fff', '#fff',],
+                }]
+              };
+
+              var salesTopOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                  yAxes: [{
+                    gridLines: {
+                      display: true,
+                      drawBorder: false,
+                      color: "#F0F0F0",
+                      zeroLineColor: '#F0F0F0',
+                    },
+                    ticks: {
+                      beginAtZero: false,
+                      autoSkip: true,
+                      maxTicksLimit: 4,
+                      fontSize: 10,
+                      color: "#6B778C"
+                    }
+                  }],
+                  xAxes: [{
+                    gridLines: {
+                      display: false,
+                      drawBorder: false,
+                    },
+                    ticks: {
+                      beginAtZero: false,
+                      autoSkip: true,
+                      maxTicksLimit: 7,
+                      fontSize: 10,
+                      color: "#6B778C"
+                    }
+                  }],
+                },
+                legend: false,
+                legendCallback: function (chart) {
+                  var text = [];
+                  text.push('<div class="chartjs-legend"><ul>');
+                  for (var i = 0; i < chart.data.datasets.length; i++) {
+                    console.log(chart.data.datasets[i]); // see what's inside the obj.
+                    text.push('<li>');
+                    text.push('<span style="background-color:' + chart.data.datasets[i].borderColor + '">' + '</span>');
+                    text.push(chart.data.datasets[i].label);
+                    text.push('</li>');
+                  }
+                  text.push('</ul></div>');
+                  return text.join("");
+                },
+
+                elements: {
+                  line: {
+                    tension: 0.4,
+                  }
+                },
+                tooltips: {
+                  backgroundColor: 'rgba(31, 59, 179, 1)',
+                }
+              }
+              var salesTop = new Chart(graphGradient, {
+                type: 'line',
+                data: salesTopData,
+                options: salesTopOptions
+              });
+
+            </script>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+  {% for i in range(7,13) %}
+  {% set j = i-6 %}
+  <div class="col-lg-2 grid-margin stretch-card">
     <div class="card">
-      <div class="card-body">
-        <div class="chartjs-size-monitor">
-          <div class="chartjs-size-monitor-expand">
-            <div class=""></div>
-          </div>
-          <div class="chartjs-size-monitor-shrink">
-            <div class=""></div>
-          </div>
+      <div class="chartjs-size-monitor">
+        <div class="chartjs-size-monitor-expand">
+          <div class=""></div>
         </div>
-        <div class="d-flex align-items-center justify-content-between">
-          <h4 class="card-title">Top Picks</h4>
-          <h4 class="text-success font-weight-bold">APPL<span class="text-dark ml-3">#1</span></h4>
+        <div class="chartjs-size-monitor-shrink">
+          <div class=""></div>
         </div>
-        <div id="support-tracker-legend" class="support-tracker-legend">
-          <ul class="13-legend">
-            <li><span class="legend-box" style="background:#464dee;"></span><span
-                class="legend-label text-dark">Today</span></li>
-            <li><span class="legend-box" style="background:#d8d8d8;"></span><span
-                class="legend-label text-dark">Yesterday
-                Tickets</span></li>
-          </ul>
-        </div>
-        <canvas id="supportTracker" style="display: block; width: 587px; height: 293px;" class="chartjs-render-monitor"
-          width="587" height="293"></canvas>
       </div>
+      <div class="card-body pb-0">
+        <div class="d-flex align-items-center justify-content-between">
+          {% if i % 6 == 0 %}
+          <h2 class="text-success font-weight-bold">{{ '%0.2f'| format(x[1][i]|float) }}</h2>
+          <i class="mdi mdi-cash mdi-18px text-dark"></i>
+          {% elif i % 6 == 1 %}
+          <h2 class="text-danger font-weight-bold">{{ '%0.2f'| format(x[1][i]|float) }}</h2>
+          <i class="mdi mdi-cash mdi-18px text-dark"></i>
+          {% elif i % 6 == 2 %}
+          <h2 class="text-info font-weight-bold">{{ '%0.2f'| format(x[1][i]|float) }}</h2>
+          <i class="mdi mdi-cash mdi-18px text-dark"></i>
+          {% elif i % 6 == 3 %}
+          <h2 class="text-warning font-weight-bold">{{ '%0.2f'| format(x[1][i]|float) }}</h2>
+          <i class="mdi mdi-cash mdi-18px text-dark"></i>
+          {% elif i % 6 == 4 %}
+          <h2 class="text-primary font-weight-bold">{{ '%0.2f'| format(x[1][i]|float) }}</h2>
+          <i class="mdi mdi-cash mdi-18px text-dark"></i>
+          {% elif i % 6 == 5 %}
+          <h2 class="text-secondary font-weight-bold">{{ '%0.2f'| format(x[1][i]|float) }}</h2>
+          <i class="mdi mdi-cash mdi-18px text-dark"></i>
+          {% endif %}
+        </div>
+      </div>
+      <canvas class="invoices" style="display: block; width: 196px; height: 97px;" class="chartjs-render-monitor"
+        width="196" height="97"></canvas>
+      <div class="line-chart-row-title">{{ outcome_variables[j] }}</div>
     </div>
   </div>
-
+  {% endfor %}
 </div>
 
 {% endfor %}

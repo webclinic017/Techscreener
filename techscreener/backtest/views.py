@@ -35,8 +35,8 @@ class RankingView(APIView):
             return_array = mediumCapReturns
             closePriceList =  MediumClosePriceList
             DateList = MediumDateList
-        
-        return render(request, "main/ranking.html", { 'return_array': return_array, 'outcome_variables': outcome_variables, 'strategy_description': strategy_description })
+
+        return render(request, "main/ranking.html", { 'return_array': return_array, 'outcome_variables': outcome_variables, 'strategy_description': strategy_description, 'close': closePriceList, 'date': DateList })
     
     @register.filter(name='split')
     def split(value):
@@ -93,7 +93,8 @@ class StrategyView(APIView):
         strategy = request.data['strategy']
         # The ClosePriceList is a python list that has all the all the close prices in the list format.
         company_statistics,ClosePriceList,DateList = strategy_backtest(company,strategy)
+
         
         return render(request, "main/strategy.html", { 
-            'company': company, 'strategy': strategy, 'company_statistics': company_statistics, 'strategy_description': strategy_description, 'outcome_variables': outcome_variables
+            'company': company, 'strategy': strategy, 'company_statistics': company_statistics, 'strategy_description': strategy_description, 'outcome_variables': outcome_variables, 'close': ClosePriceList, 'date': DateList
          })
