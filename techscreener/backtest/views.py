@@ -74,15 +74,13 @@ class VisualizationView(APIView):
         data['RSI'] = momentum.rsi(close=data["Close"], window=12)
 
         # MFI
-        indicator_mfi = MFIIndicator(high=data['High'],low=data['Low'],close=data['Close'],volume=data['Volume'],window=12,fillna=False)
-        data['MFI'] = indicator_mfi.money_flow_index()
         closing_price = data.iloc[-1,-9]
         volume = data.iloc[-1,-8]
         df = data.iloc[-11:-1,-5:-1]
         #fig = px.line(data, x = data.index, y = ["Close","SMA10"])
         #graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
 
-        return render(request, "main/visualization.html", { 'closing_price': closing_price, 'volume': volume, 'company': company, 'tables': [df.to_html()], 'titles': ['SMA','BB_BBM','BB_BBH','BB_BBL','MACD','RSI','MFI']})
+        return render(request, "main/visualization.html", { 'closing_price': closing_price, 'volume': volume, 'company': company, 'tables': [df.to_html()], 'titles': ['SMA','BB_BBM','BB_BBH','BB_BBL','MACD','RSI']})
 
 class StrategyView(APIView):
     def post(self, request):
