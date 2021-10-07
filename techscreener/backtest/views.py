@@ -1,5 +1,6 @@
 from django.shortcuts import redirect, render
 from django import template
+from django.http import JsonResponse
 from requests.api import request
 from requests.models import Response
 register=template.Library()
@@ -81,13 +82,13 @@ class VisualizationView(APIView):
         ClosePriceList = data['Close'].tolist()
         volume = data.iloc[-1,-8]
         df = data.iloc[-11:-1,-5:-1]
-        print(ClosePriceList)
         #fig = px.line(data, x = data.index, y = ["Close","SMA10"])
         #graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
 
         return render(request, "main/visualization.html", { 'ClosePriceList':ClosePriceList,'closing_price': closing_price, 'volume': volume, 'company': company, 'tables': [df.to_html()], 'titles': ['SMA','BB_BBM','BB_BBH','BB_BBL','MACD','RSI']})
+
 class GraphView(APIView):
-    def post(self,request):
+    def post(self, request):
         close_price = request.data['ClosePriceList']
         close_price = ast.literal_eval(close_price)
         ind = [0,1,2,3,4,5,6,7,8,9]
@@ -101,8 +102,11 @@ class GraphView(APIView):
             indicator_data = trend.ema_indicator(close= close_price ,window =value, fillna = False)
         else:
             indicator_data = momentum.rsi(close= close_price, window=12)
-        indicator_data = indicator_data[:10]
-        return Response({'data':indicator_data})
+
+        indicator_data = [150, 250, 150, 250, 150, 250, 150, 250, 150, 250, 150, 250]
+        data = ','.join(map(str, indicator_data))
+
+        return JsonResponse({ 'data': data }, safe=True)
 
 class StrategyView(APIView):
     def post(self, request):

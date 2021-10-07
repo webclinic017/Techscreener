@@ -33,7 +33,8 @@
 								<div class="col-md-6">
 									<div class="form-group text-primary fw-bold">
 										<label for="exampleFormControlSelect1">Indicators</label>
-										<select class="form-control form-control-lg" id="indicator"  style="padding: 0.6rem 0.81rem; line-height: 1.5;">
+										<select class="form-control form-control-lg" id="indicator"
+											style="padding: 0.6rem 0.81rem; line-height: 1.5;">
 											<option value="SMA">Simple Moving Average</option>
 											<option value="EMA">Exponential Moving Average</option>
 											<option value="RSI">Relative Strength Index</option>
@@ -49,8 +50,8 @@
 								</div>
 								<div class="col-md-3">
 									<div class="form-group text-success fw-bold">
-										<label for="value"><br/></label>
-										<div class="btn btn-primary btn-block" onclick="UpdateChart()">Go</div>
+										<label for="value"><br /></label>
+										<div class="btn btn-primary btn-block" id="go">Go</div>
 									</div>
 								</div>
 							</form>
@@ -90,8 +91,11 @@
 	</div>
 </div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 <script>
-	$(document).ready(function() {
+	var chart;
+	$(document).ready(function () {
 		var graphGradient = document.getElementById("visualizationGraph").getContext('2d');
 		var graphGradient2 = document.getElementById("visualizationGraph").getContext('2d');
 		var GradientBg = graphGradient.createLinearGradient(5, 0, 5, 100);
@@ -100,6 +104,7 @@
 		var GradientBg2 = graphGradient2.createLinearGradient(100, 0, 50, 150);
 		GradientBg2.addColorStop(0, 'rgba(0, 208, 255, 0.19)');
 		GradientBg2.addColorStop(1, 'rgba(0, 208, 255, 0.03)');
+
 		var Data = {
 			labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
 			datasets: [{
@@ -190,33 +195,33 @@
 				backgroundColor: 'rgba(31, 59, 179, 1)',
 			}
 		}
-		var chart = new Chart(graphGradient, {
+
+		chart = new Chart(graphGradient, {
 			type: 'line',
 			data: Data,
 			options: Options
 		});
-	});
-</script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-<script>
-	const UpdateChart = () => {
-		let indicator = $("#indicator").val();
-		let value = $("#value").val();
-		console.log(indicator, value);
-		$.post(`http://localhost:8000/backtest/graph`, {
-			'ClosePriceList' : '{{ ClosePriceList }}',
-			'indicator' : indicator ,
-			'value' : value
-		},function (data, status) {
-			var d = JSON.parse(data);
-			var dates = d.dates;
-			var data = d.data;
-			chart.Data.datasets[1] = data; 
-			chart.update();
+		$("#go").click(function () {
+			let indicator = $("#indicator").val();
+			let value = $("#value").val();
+			console.log(indicator, value);
+			$.post(`http://localhost:8000/backtest/graph`, {
+				'ClosePriceList': '{{ ClosePriceList }}',
+				'indicator': indicator,
+				'value': value
+			}, function (data, status) {
+				var data = data.data;
+				data = data.split(",");
+				
+				console.log(data);
+				console.log(chart.data.datasets[1]);
+				chart.data.datasets[1].data = data;
+				chart.update();
+			});
 		});
-	};
+
+	});
 </script>
 
 {% endblock %}
