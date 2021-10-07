@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-
+{{ ClosePriceList}}
 <div class="row">
 	<div class="col-sm-12 grid-margin stretch-card">
 		<div class="card text-center pt-4 pb-4" style="background-color: #f0f3f6; box-shadow: none;">
@@ -27,7 +27,7 @@
 							<div>
 								<h4 class="card-title card-title-dash">Visualized Data</h4>
 								<h5 class="card-subtitle card-subtitle-dash">View the plot of SMA and Closing Price over
-									the last year</h5>
+									the last few weeks</h5>
 							</div>
 							<form class="row">
 								<div class="col-md-6">
@@ -205,7 +205,11 @@
 		let indicator = $("#indicator").val();
 		let value = $("#value").val();
 		console.log(indicator, value);
-		$.get(`http://localhost:8000/backtest/graph/${indicator}/${value}`, function (data, status) {
+		$.post(`http://localhost:8000/backtest/graph`, {
+			'ClosePriceList' : '{{ ClosePriceList }}',
+			'indicator' : indicator ,
+			'value' : value
+		},function (data, status) {
 			var d = JSON.parse(data);
 			var dates = d.dates;
 			var data = d.data;
