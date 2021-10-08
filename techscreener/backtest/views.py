@@ -10,7 +10,7 @@ import json
 import ast
 #import plotly
 #import plotly.express as px 
-from services.data_collection import largeCapReturns, mediumCapReturns,LargeClosePriceList,LargeDateList,MediumDateList,MediumClosePriceList
+from services.data_collection import largeCapReturns, mediumCapReturns,LargeClosePriceList,LargeDateList,MediumDateList,MediumClosePriceList,smallCapReturns,smallClosePriceList,smallDateList
 from services.company_data import analysis_companies, Strategies,outcome_variables, stocks, strategy_description
 from services.data_pipeline import pipeline_intraday
 from ta import momentum
@@ -35,10 +35,14 @@ class RankingView(APIView):
             return_array = largeCapReturns
             closePriceList = LargeClosePriceList
             DateList = LargeDateList
-        else:
+        elif index == 'Medium-Cap Stocks':
             return_array = mediumCapReturns
             closePriceList =  MediumClosePriceList
             DateList = MediumDateList
+        else:
+            return_array = smallCapReturns
+            closePriceList = smallClosePriceList
+            DateList = smallDateList
 
         return render(request, "main/ranking.html", { 'return_array': return_array, 'outcome_variables': outcome_variables, 'strategy_description': strategy_description, 'close': closePriceList, 'date': DateList })
     
@@ -97,13 +101,14 @@ class GraphView(APIView):
         value = request.data['value']
         value = int(value)
         if indicator == 'SMA':
-            indicator_data = trend.sma_indicator(close = close_price, window = value, fillna = False)
+            indicator_data = trend.sma_indicator(close = close_price, window = value, fillna = True)
         elif indicator == 'EMA':
-            indicator_data = trend.ema_indicator(close= close_price ,window =value, fillna = False)
+            indicator_data = trend.ema_indicator(close= close_price ,window =value, fillna = True)
         else:
             indicator_data = momentum.rsi(close= close_price, window=12)
 
-        indicator_data = [150, 250, 150, 250, 150, 250, 150, 250, 150, 250, 150, 250]
+        indicator_data = indicator_data[:50]
+        indicator_data = [int(x) for x in indicator_data]
         data = ','.join(map(str, indicator_data))
 
         return JsonResponse({ 'data': data }, safe=True)
