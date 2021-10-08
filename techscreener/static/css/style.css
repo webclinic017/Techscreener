@@ -22986,3 +22986,7 @@ dl li {
 }
 
 /*# sourceMappingURL=maps/style.css.map */
+
+/* html {
+  filter: invert(1) hue-rotate(180deg) !important;
+} */
