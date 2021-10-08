@@ -3,3 +3,4 @@ from .company_data import stocks
 print('the file is getting executed')
 largeCapReturns,LargeClosePriceList,LargeDateList = company_ranking(stocks['Large-Cap Stocks'])
 mediumCapReturns,MediumClosePriceList,MediumDateList = company_ranking(stocks['Medium-Cap Stocks'])
+smallCapReturns,smallClosePriceList,smallDateList = company_ranking(stocks['Small-Cap Stocks'])

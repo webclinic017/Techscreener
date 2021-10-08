@@ -7,6 +7,9 @@ stocks = {
     "Medium-Cap Stocks": {
         "LAD": "Lithia Motors, Inc.",
     },
+    "Small-Cap Stocks": {
+        "PRLB" : 'ProtoLab Inc.',
+    }
 }
 
 # crud
