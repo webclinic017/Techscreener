@@ -24,9 +24,9 @@
 								<select class="form-control" placeholder="Company name"
 									aria-label="Company name" name="company">
 									<option value="" disabled selected>-- Select a company --</option>
-									{% for key, value in company.items %}
+									{% for key in company %}
 										<option value="{{ key }}">
-											{{ value }}
+											{{ company[key] }}
 										</option>
 									{% endfor %}
 								</select>
@@ -49,55 +49,12 @@
 		</div>
 	</div>
 	<div class="col-sm-8 flex-column d-flex stretch-card">
-		<div class="row flex-grow">
+		<div class="row">
 			<div class="col-sm-12 grid-margin stretch-card">
-				<div class="card">
+				<div class="card text-center pt-4 pb-4">
 					<div class="card-body">
-						<div class="row">
-							<div class="col-md-6">
-								<div class="d-flex align-items-center justify-content-between">
-									<h4 class="card-title">Rank #1 - APPL</h4>
-								  </div>
-								  <div class="card-description">
-									Strategy in use: SmaCross
-								  </div>
-								  <ul class="list-star">
-									<li>Return [%] - <span class="text-dark">5.9%</span></li>
-									<li>Annual Return [%] - <span class="text-dark">4.7%</span></li>
-									<li>Sharpe Ratio - <span class="text-dark">1.33</span></li>
-									<li>Sortino Ratio - <span class="text-dark">1.7</span></li>
-									<li>Calmar Ratio - <span class="text-dark">1.55</span></li>
-								  </ul>
-								  <button type="button" class="btn btn-inverse-success btn-fw">Buy when SMA 10 greater than closing price.</button>
-								  <br/><br/>
-								  <button type="button" class="btn btn-inverse-danger btn-fw">Sell when SMA 20 less than closing price.</button>
-							</div>
-							<div class="col-md-6">
-								<div class="chartjs-size-monitor">
-									<div class="chartjs-size-monitor-expand">
-									  <div class=""></div>
-									</div>
-									<div class="chartjs-size-monitor-shrink">
-									  <div class=""></div>
-									</div>
-								  </div>
-								  <div class="d-flex align-items-center justify-content-between">
-									<h4 class="card-title">Performance</h4>
-									<h4 class="text-success font-weight-bold">APPL<span class="text-dark ml-3">#1</span></h4>
-								  </div>
-								  <div id="support-tracker-legend" class="support-tracker-legend">
-									<ul class="13-legend">
-									  <li><span class="legend-box" style="background:#464dee;"></span><span
-										  class="legend-label text-dark">Today</span></li>
-									  <li><span class="legend-box" style="background:#d8d8d8;"></span><span
-										  class="legend-label text-dark">Yesterday
-										  Tickets</span></li>
-									</ul>
-								  </div>
-								  <canvas id="supportTracker" style="display: block; width: 587px; height: 293px;" class="chartjs-render-monitor"
-									width="587" height="293"></canvas>
-							</div>
-						</div>
+						<h1 class="text-dark font-weight-bold display-2">To be added in version 3</h1>
+						<p>User's country based data to go here</p>
 					</div>
 				</div>
 			</div>
