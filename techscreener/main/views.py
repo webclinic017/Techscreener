@@ -25,7 +25,7 @@ def portfolio(request):
     if not hasattr(request, 'username'):
         response = redirect('/login?message=Login to view the page')
         return response
-    return render(request, "main/portfolio.html", { 'pageIndex': 4 })
+    return render(request, "main/portfolio.html", { 'pageIndex': 4, 'company': analysis_companies, 'strategy': Strategies })
 
 def strategies(request):
     return render(request, "main/strategies.html", { 'pageIndex': 5 })
