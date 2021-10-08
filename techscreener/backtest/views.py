@@ -86,10 +86,11 @@ class VisualizationView(APIView):
         ClosePriceList = data['Close'].tolist()
         volume = data.iloc[-1,-8]
         df = data.iloc[-11:-1,-5:-1]
+        DateList = dataFormatting('date',data)
         #fig = px.line(data, x = data.index, y = ["Close","SMA10"])
         #graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
 
-        return render(request, "main/visualization.html", { 'ClosePriceList':ClosePriceList,'closing_price': closing_price, 'volume': volume, 'company': company, 'tables': [df.to_html()], 'titles': ['SMA','BB_BBM','BB_BBH','BB_BBL','MACD','RSI']})
+        return render(request, "main/visualization.html", { 'DateList':DateList,'ClosePriceList':ClosePriceList,'closing_price': closing_price, 'volume': volume, 'company': company, 'tables': [df.to_html()], 'titles': ['SMA','BB_BBM','BB_BBH','BB_BBL','MACD','RSI']})
 
 class GraphView(APIView):
     def post(self, request):
