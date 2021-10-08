@@ -105,7 +105,7 @@
 		GradientBg2.addColorStop(1, 'rgba(0, 208, 255, 0.03)');
 
 		var Data = {
-			labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
+			labels: "{{ DateList[:12] }}".split(","),
 			datasets: [{
 				label: 'Close',
 				data: "{{ ClosePriceList[:12] }}".split(","),
