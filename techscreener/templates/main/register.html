@@ -5,7 +5,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Kapella Bootstrap Admin Dashboard Template</title>
+  <title>Register - Averyx Group</title>
   <!-- base:css -->
   <link rel="stylesheet" href="/static/vendors/mdi/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="/static/vendors/base/vendor.bundle.base.css">
@@ -23,7 +23,7 @@
     <div class="container-fluid page-body-wrapper full-page-wrapper">
       <div class="content-wrapper d-flex align-items-stretch auth auth-img-bg">
         <div class="row flex-grow">
-          <div class="col-lg-6 d-flex align-items-center justify-content-center">
+          <div class="col-lg-8 d-flex align-items-center justify-content-center">
             <div class="auth-form-transparent text-left p-3">
               <div class="brand-logo">
                 <a href="/">
@@ -33,15 +33,18 @@
               <h4>New here?</h4>
               <h6 class="font-weight-light">Join us today! It takes only few steps</h6>
               <form class="pt-3" method="POST" action="/user/register">
-                <div class="form-group">
-                  <label>Name</label>
-                  <div class="input-group">
-                    <div class="input-group-prepend bg-transparent">
-                      <span class="input-group-text bg-transparent border-right-0">
-                        <i class="mdi mdi-account-outline text-primary"></i>
-                      </span>
-                    </div>
-                    <input type="text" class="form-control form-control-lg border-left-0" placeholder="Full Name" name="name">
+                <div class="form-group row">
+                  <div class="col">
+                    <label>Name</label>
+                    <input type="text" class="form-control" placeholder="Full Name" name="name" required>
+                  </div>
+                  <div class="col">
+                    <label>Country</label>
+                    <select class="form-control" placeholder="Country" aria-label="Country" name="country" required style="padding: 0.875rem 1.375rem" >
+                      <option value="India" selected>India</option>
+                      <option value="UAE">UAE</option>
+                      <option value="USA">USA</option>
+                    </select>
                   </div>
                 </div>
                 <div class="form-group">
@@ -52,7 +55,7 @@
                         <i class="mdi mdi-email-outline text-primary"></i>
                       </span>
                     </div>
-                    <input type="email" class="form-control form-control-lg border-left-0" placeholder="Email" name="email">
+                    <input type="email" class="form-control form-control-lg border-left-0" placeholder="Email" name="email" required>
                   </div>
                 </div>
                 <div class="form-group">
@@ -63,7 +66,7 @@
                         <i class="mdi mdi-lock-outline text-primary"></i>
                       </span>
                     </div>
-                    <input type="password" class="form-control form-control-lg border-left-0" id="exampleInputPassword" placeholder="Password" name="password">                        
+                    <input type="password" class="form-control form-control-lg border-left-0" id="exampleInputPassword" placeholder="Password" name="password" required>                        
                   </div>
                 </div>
                 <div class="mb-4">
@@ -83,7 +86,7 @@
               </form>
             </div>
           </div>
-          <div class="col-lg-6 register-half-bg d-flex flex-row">
+          <div class="col-lg-4 register-half-bg d-flex flex-row">
             <p class="text-white font-weight-medium text-center flex-grow align-self-end">Copyright &copy; 2020  All rights reserved.</p>
           </div>
         </div>
