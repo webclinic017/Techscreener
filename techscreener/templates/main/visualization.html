@@ -26,26 +26,60 @@
 							<div>
 								<h4 class="card-title card-title-dash">Visualized Data</h4>
 								<h5 class="card-subtitle card-subtitle-dash">View the plot of SMA and Closing Price over
-									the last few weeks</h5>
+									the last few weeks</h5><br/>
 							</div>
+						</div>
+						<div>
 							<form class="row">
-								<div class="col-md-6">
-									<div class="form-group text-primary fw-bold">
-										<label for="exampleFormControlSelect1">Indicators</label>
-										<select class="form-control form-control-lg" id="indicator"
-											style="padding: 0.6rem 0.81rem; line-height: 1.5;">
-											<option value="SMA">Simple Moving Average</option>
-											<option value="EMA">Exponential Moving Average</option>
-											<option value="RSI">Relative Strength Index</option>
-										</select>
+								<div class="col row">
+									<div class="col">
+										<div class="form-group text-primary fw-bold">
+											<label for="exampleFormControlSelect1">Indicators</label>
+											<select class="form-control form-control-lg" id="indicator"
+												style="padding: 0.6rem 0.81rem; line-height: 1.5;">
+												<option value="SMA">Simple Moving Average</option>
+												<option value="EMA">Exponential Moving Average</option>
+												<option value="RSI">Relative Strength Index</option>
+											</select>
+										</div>
 									</div>
-								</div>
-								<div class="col-md-3">
-									<div class="form-group text-success fw-bold">
-										<label for="value">Value</label>
-										<input type="number" name="value" min="1" max="100"
-											class="form-control form-control-sm" id="value">
+									<div class="col">
+										<div class="form-group text-success fw-bold">
+											<label for="value">Value</label>
+											<input type="number" name="value" min="1" max="100"
+												class="form-control form-control-sm" id="value">
+										</div>
 									</div>
+									<div class="col hidden-indicator" id="ind_1">
+										<div class="form-group text-primary fw-bold">
+											<label for="exampleFormControlSelect1">Additional Indicator</label>
+											<select class="form-control form-control-lg" id="indicator_1"
+												style="padding: 0.6rem 0.81rem; line-height: 1.5;">
+												<option value="SMA">Simple Moving Average</option>
+												<option value="EMA">Exponential Moving Average</option>
+												<option value="RSI">Relative Strength Index</option>
+											</select>
+										</div>
+									</div>
+									<div class="col hidden-indicator" id="ind_2">
+										<div class="form-group text-primary fw-bold">
+											<label for="exampleFormControlSelect1">Additional Indicator</label>
+											<select class="form-control form-control-lg" id="indicator_2"
+												style="padding: 0.6rem 0.81rem; line-height: 1.5;">
+												<option value="SMA">Simple Moving Average</option>
+												<option value="EMA">Exponential Moving Average</option>
+												<option value="RSI">Relative Strength Index</option>
+											</select>
+										</div>
+									</div>
+									<style>
+										.hidden-indicator {
+											display: none;
+										}
+									</style>
+									<button type="button" class="btn btn-inverse-primary btn-rounded btn-icon" style="margin-top: 27.5px" id="add-ind">
+										<i class="mdi mdi-plus"></i>
+									</button>
 								</div>
 								<div class="col-md-3">
 									<div class="form-group text-success fw-bold">
@@ -205,6 +239,17 @@
 				chart.update();
 			});
 		});
+
+		$("#add-ind").click(function() {
+			let ind_1 = $("#ind_1");
+			let ind_2 = $("#ind_2");
+			if (ind_1.css("display") == "none") {
+				$("#ind_1").css({"display": "inline-block"})
+			} else if (ind_2.css("display") == "none") {
+				$("#ind_2").css({"display": "inline-block"});
+				$("#add-ind").css({"display": "none"});
+			}
+		})
 
 	});
 </script>

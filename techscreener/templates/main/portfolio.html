@@ -16,7 +16,7 @@
 						</div>
 						<p class="mt-4 mb-4">
 							<span class="font-weight-bold"> Name: </span>{{ request.username }}<br/>
-							<span class="font-weight-bold"> Country: </span>: XYZ
+							<span class="font-weight-bold"> Country: </span>{{ request.country }}
 						</p>
 						<form action="/strategy" method="POST" class="form-basic mt-4" style="max-width: 500px; margin: auto; text-align: left;">
 							<div class="form-group">
@@ -51,10 +51,33 @@
 	<div class="col-sm-8 flex-column d-flex stretch-card">
 		<div class="row">
 			<div class="col-sm-12 grid-margin stretch-card">
-				<div class="card text-center pt-4 pb-4">
+				<div class="card pt-4 pb-4">
 					<div class="card-body">
-						<h1 class="text-dark font-weight-bold display-2">To be added in version 3</h1>
-						<p>User's country based data to go here</p>
+						<div class="d-sm-flex justify-content-between align-items-start">
+							<div>
+								<h4 class="card-title card-title-dash">Chart Title</h4>
+								<h5 class="card-subtitle card-subtitle-dash">Chart Description</h5>
+							</div>
+							<div id="support-tracker-legend" class="support-tracker-legend">
+								<ul class="13-legend">
+								  <li><span class="legend-box" style="background:#464dee;"></span><span
+									  class="legend-label text-dark">Legend 1</span></li>
+									<li><span class="legend-box" style="background:#52CDFF;"></span><span
+										class="legend-label text-dark">Legend 2</span></li>
+								</ul>
+							</div>
+						</div>
+						<div class="chartjs-wrapper mt-5">
+							<div class="chartjs-size-monitor">
+							  <div class="chartjs-size-monitor-expand">
+								<div class=""></div>
+							  </div>
+							  <div class="chartjs-size-monitor-shrink">
+								<div class=""></div>
+							  </div>
+							</div>
+							<canvas id="performaneLine" class="chartjs-render-monitor" width="637" height="250"></canvas>
+						  </div>
 					</div>
 				</div>
 			</div>

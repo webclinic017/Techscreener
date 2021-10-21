@@ -21,6 +21,7 @@ class AuthenticationMiddleware(object):
 
         request.userid = payload['id']
         request.username = payload['name']
+        request.country = payload['country']
         
         response = self.get_response(request)
         return response
